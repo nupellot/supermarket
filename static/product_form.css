@@ -1,6 +1,42 @@
-h2 { font-size  : 14pt;
-   color      : black
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,900&family=Open+Sans:wght@800&family=Roboto+Mono:wght@700&display=swap');
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0;
+    margin-left: 0;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
 }
-label { font-size  : 14pt;
-      color      : green
+
+.container {
+    max-width: 90%;
+    /*margin: 50px;*/
+    padding: 0;
+    /*display: flex;*/
 }
+
+.SendFormContainer {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+.SendForm {
+    /*margin: 0;*/
+}
+
+.SendForm * {
+    border: 1px solid red;
+    margin: 0;
+    padding: 10px;
+    font-size: 20px;
+}
+
+/*h2 { font-size  : 14pt;*/
+/*   color      : black*/
+/*}*/
+/*label { font-size  : 14pt;*/
+/*      color      : #c71d8e*/
+/*}*/
