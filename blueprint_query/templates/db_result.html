@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Результат поиска продукта</title>
     <link rel="stylesheet" href="../../static/product_form.css">
-    <link type=" text/css" rel="stylesheet" href="{{url_for('static', filename='sem3.css')}}">
+<!--    <link type=" text/css" rel="stylesheet" href="{{url_for('static', filename='sem3.css')}}">-->
 </head>
 <body>
-    <div class="container">
+    <div class="SendFormContainer">
         <h2> Получение информации о продуктах</h2>
         <form class="SendForm" action="" method ="POST">
             <label class="ProductNameLabel"  for="product">
@@ -20,21 +19,22 @@
     </div>
 
 
- <h2> Описание продукта </h2>
-    <table border = 1 width = 80%>
-      <tr>
-          {% for column in schema %}
-            <td class= border align="center">{{column}}</td>
-          {% endfor %}
-      </tr>
-        {% for line in result %}
-          <tr>
-           {% for column in line %}
-            <td align = 'center'> {{column}} </td>
-           {% endfor %}
-         </tr>
-        {% endfor %}
-    </table> <br><br>
-
+    <div class="ResultContainer">
+        <h2>Описание продукта</h2>
+        <table>
+            <tr>
+                {% for column in schema %}
+                <td> {{column}} </td>
+                {% endfor %}
+            </tr>
+            {% for line in result %}
+            <tr>
+               {% for column in line %}
+                <td> {{column}} </td>
+               {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>
