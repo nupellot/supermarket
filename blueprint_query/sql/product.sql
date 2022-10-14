@@ -1,1 +1,1 @@
-select prod_id, prod_name, prod_measure, prod_price from supermarket where prod_name='$input_product'
+select prod_id AS "ID", prod_name AS "Name", prod_measure AS "Measure", prod_price AS "Price" from supermarket where prod_name='$input_product'
