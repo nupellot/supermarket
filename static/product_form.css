@@ -13,10 +13,10 @@ html, body {
 
 
 form.SendForm {
-    height: 60px;
+    height: 50px;
     /*height: 100px;*/
     /*margin: 0;*/
-    outline: 1px solid green;
+    /*outline: 1px solid green;*/
     display: flex;
     justify-content: left;
     /*align-content: center;*/
@@ -26,11 +26,40 @@ form.SendForm {
     /*text-align: center;*/
     min-width: 150px;
     /*height: 100%;*/
-    outline: 1px solid red;
+    /*outline: 1px solid #c71d8e;*/
     /*padding: 10px;*/
     font-size: 20px;
-    margin: 0;
-    padding: 8px;
+    /*margin: 0;*/
+    margin-right: 5px;
+    padding: 10px;
+}
+
+.ProductNameLabel {
+    display: flex;
+    align-items: center;
+    border: 3px outset red;
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+}
+
+.ProductNameInput, .ProductNameInput:focus {
+    border-right: none;
+    border-left: none;
+    border-top: 3px outset red;
+    border-bottom: 3px outset red;
+}
+
+.ProductNameSend {
+    border-right: 3px outset red;
+    border-left: none;
+    border-top: 3px outset red;
+    border-bottom: 3px outset red;
+    border-radius: 0 10px 10px 0;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.ProductNameSend:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 input {
