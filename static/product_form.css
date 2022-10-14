@@ -71,7 +71,12 @@ input {
 }
 
 .ResultContainer td {
-
+    padding: 10px;
+    text-align: center;
+    border-right: none;
+    border-left: none;
+    border-bottom: 3px outset #14ff26;
+    border-top: none;
 }
 
 /*h2 { font-size  : 14pt;*/
