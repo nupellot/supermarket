@@ -4,11 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Результат поиска продукта</title>
+    <link rel="stylesheet" href="../../static/product_form.css">
     <link type=" text/css" rel="stylesheet" href="{{url_for('static', filename='sem3.css')}}">
 </head>
 <body>
- <h1 align="center"> Описание продукта </h1> <br><br>
+    <div class="container">
+        <h2> Получение информации о продуктах</h2>
+        <form class="SendForm" action="" method ="POST">
+            <label class="ProductNameLabel"  for="product">
+                <div class="Name">Название продукта</div>
+            </label>
+            <input class="ProductNameInput" name = product_name id="product" type = text placeholder="Вкуснейшие пельмени">
+            <input class="ProductNameSend" type = submit value ="Отправить">
+        </form>
+    </div>
 
+
+ <h2> Описание продукта </h2>
     <table border = 1 width = 80%>
       <tr>
           {% for column in schema %}
