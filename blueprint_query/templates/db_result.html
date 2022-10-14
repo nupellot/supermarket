@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результат поиска продукта</title>
+    <link type=" text/css" rel="stylesheet" href="{{url_for('static', filename='sem3.css')}}">
+</head>
+<body>
+ <h1 align="center"> Описание продукта </h1> <br><br>
+
+    <table border = 1 width = 80%>
+      <tr>
+          {% for column in schema %}
+            <td class= border align="center">{{column}}</td>
+          {% endfor %}
+      </tr>
+        {% for line in result %}
+          <tr>
+           {% for column in line %}
+            <td align = 'center'> {{column}} </td>
+           {% endfor %}
+         </tr>
+        {% endfor %}
+    </table> <br><br>
+
+</body>
+</html>
