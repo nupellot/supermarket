@@ -1,56 +1,34 @@
-from flask import Flask, request, render_template, json, redirect, url_for
-from blueprint_query.route import blueprint_query
+import json
 
-from db_work import select
+from flask import Flask, render_template, session
+from auth.routes import blueprint_auth
+from report.routes import blueprint_report
+from access import login_required
+
 
 app = Flask(__name__)
+app.secret_key = 'SuperKey'
 
-app.register_blueprint(blueprint_query, url_prefix='/zaproses')  # регистрация blue-print'а
+app.register_blueprint(blueprint_auth, url_prefix='/auth')
+app.register_blueprint(blueprint_report, url_prefix='/report')
 
-with open('data_files/dbconfig.json', 'r') as f:
-    db_config = json.load(f)
-app.config['dbconfig'] = db_config
-
-
-@app.route('/products', methods=['GET'])
-def get_all_products():
-    sql = """
-    select 
-        prod_id,
-        prod_name,
-        prod_price
-    from supermarket
-    """
-    all_rows, schema = select(db_config, sql)
-    return str(all_rows)
+app.config['db_config'] = json.load(open('configs/db.json'))
+app.config['access_config'] = json.load(open('configs/access.json'))
 
 
-@app.route('/', methods=['GET', 'POST'])
-def query():
-    return render_template('start_request.html')
+@app.route('/')
+@login_required
+def menu_choice():
+    if session.get('user_group', None):
+        return render_template('internal_user_menu.html')
+    return render_template('external_user_menu.html')
 
 
 @app.route('/exit')
-def goodbye():
-    return 'До свидания!'
-
-
-@app.route('/greeting/')
-@app.route('/greeting/<name>')
-def greeting_handler(name: str = None) -> str:
-    if name is None:
-        return 'Hello unknown'
-    return f'Hello, {name}'  # -> "Hello, ivan" == "Hello, " + "ivan" == " ".join(["Hello, ", name])
-
-
-@app.route('/form', methods=['GET', 'POST'])
-def form_handler():
-    if request.method == 'GET':
-        return render_template('form.html')
-    else:
-        login = request.form.get('login')
-        password = request.form.get('password')
-        return f'Login: {login}, password: {password}'
+@login_required
+def exit_func():
+    session.clear()
+    return render_template('exit.html')
 
 
 if __name__ == '__main__':

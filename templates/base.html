@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base_menu</title>
+    <link href="static/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div>
+        <h1 align="center"> Вам доступны следующие действия </h1>
+        {% block internal_user %}{% endblock %}
+        {% block external_user %}{% endblock %}
+    </div>
+</body>
+</html>

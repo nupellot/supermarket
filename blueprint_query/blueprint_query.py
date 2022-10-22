@@ -10,7 +10,7 @@ blueprint_query = Blueprint('blueprint_query', __name__, template_folder='templa
 provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 
 
-@blueprint_query.route('/queries', methods=['GET','POST'])
+@blueprint_query.route('/queries', methods=['GET', 'POST'])
 def queries():
     if request.method == 'GET':
         return render_template('product_form.html')
