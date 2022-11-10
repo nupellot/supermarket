@@ -2,15 +2,17 @@ import json
 
 from flask import Flask, render_template, session
 from auth.routes import blueprint_auth
+from blueprint_query.route import blueprint_query
 from report.routes import blueprint_report
 from access import login_required
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.secret_key = 'SuperKey'
 
 app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_report, url_prefix='/report')
+app.register_blueprint(blueprint_query, url_prefix='/queries')
 
 app.config['db_config'] = json.load(open('configs/db.json'))
 app.config['access_config'] = json.load(open('configs/access.json'))

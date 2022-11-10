@@ -4,5 +4,8 @@ body {
     font-family: "Montserrat", sans-serif;
     min-height: 100vh;
     background: linear-gradient(to right, blue, pink);
+}
 
+.login-card-logo img {
+    max-width: 70px;
 }

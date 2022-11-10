@@ -49,7 +49,7 @@ form.SendForm {
 .ProductNameInput, .ProductNameInput:focus {
     border-right: none;
     border-left: none;
-    border-top: 3px outset red;
+    border-top: 3px outset rgba(217, 66, 66, 0.9);
     border-bottom: 3px outset red;
 }
 

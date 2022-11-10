@@ -2,7 +2,7 @@ from typing import List
 
 from .connection import UseDatabase
 
-
+# Вовращает результат (набор строк) выполнения sql-запроса к бд, подключенной по db_config.
 def select(db_config: dict, sql: str) -> List:
     result = []
     with UseDatabase(db_config) as cursor:
