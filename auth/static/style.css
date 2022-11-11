@@ -29,6 +29,11 @@ html, body {
     /*display: flex;*/
     /*justify-content: center;*/
     /*align-items: center;*/
+    transition: .2s;
+}
+
+.login-card:hover {
+    background: rgba(255, 255, 255, 0.7);
 }
 
 .login-card > * {
@@ -84,11 +89,14 @@ html, body {
 .form-item input {
     background: transparent;
     border: none;
-    /*border-top: red 4px outset;*/
     border-bottom: #510d60 3px solid;
     width: 100%;
     height: 90%;
     font-size: 20px;
+}
+
+input:focus {
+    outline: none;
 }
 
 .login-button {
