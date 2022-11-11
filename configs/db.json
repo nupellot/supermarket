@@ -3,5 +3,5 @@
   "port": 3306,
   "user": "root",
   "password": "tester",
-  "database": "lab_schema"
+  "database": "supermarket"
 }

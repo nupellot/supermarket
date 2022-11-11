@@ -1,6 +1,6 @@
 from typing import List
 
-from .connection import UseDatabase
+from database.connection import UseDatabase
 
 # Вовращает результат (набор строк) выполнения sql-запроса к бд, подключенной по db_config.
 def select(db_config: dict, sql: str) -> List:
@@ -15,5 +15,5 @@ def select(db_config: dict, sql: str) -> List:
 
         for row in cursor.fetchall():
             result.append(dict(zip(schema, row)))
-
+    print(f"result: {result}")
     return result
