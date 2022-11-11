@@ -19,21 +19,23 @@ html, body {
     justify-content: center;
     align-items: center;
     outline: 1px solid red;
+    z-index: 1;
 }
 
 .login-card {
     /*outline: 1px solid red;*/
     padding: 60px 20px 80px 20px;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 10px;
     /*display: flex;*/
     /*justify-content: center;*/
     /*align-items: center;*/
     transition: .2s;
+    z-index: 3;
 }
 
 .login-card:hover {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .login-card > * {
@@ -61,7 +63,7 @@ html, body {
 
 .login-card-title.title {
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .form-item {
@@ -117,6 +119,40 @@ input:focus {
     position: fixed;
     left: 100px;
     top: 100px;
+}
+
+
+.shrek {
+    filter: blur(25px);
+    width: 600px;
+    z-index: 2;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: spin;
+    animation-duration: 250s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    cursor: help;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-200%, -50%) rotateZ(0);
+    }
+    25% {
+        transform: translate(-50%, -200%) rotateZ(180deg);
+    }
+    50% {
+        transform: translate(100%, -50%) rotateZ(360deg);
+    }
+    75% {
+        transform: translate(-50%, 100%) rotateZ(540deg);
+    }
+    100% {
+        transform: translate(-200%, -50%) rotateZ(720deg);
+    }
 }
 
 
