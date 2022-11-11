@@ -42,8 +42,8 @@ def start_auth():
                 session['user_group'] = user_dict['user_group']
                 session.permanent = True
                 return redirect(url_for('menu_choice'))
-            else:
-                return render_template('input_login.html', message='Пользователь не найден')
+            else:  # Не нашёлся пользователь с такими данными.
+                return render_template('input_login.html', message='Неверные данные для входа')
         return render_template('input_login.html', message='Повторите ввод')
 
 
