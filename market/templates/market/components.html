@@ -1,0 +1,50 @@
+{% macro render_filter() %}
+<div>
+    <form id="filter-form">
+        <div class="select-category-container">
+            <label for="categories">Фильтр по категориям</label>
+            <div>
+                <select id="categories" form="filter-form" name="category">
+                    <option value="all">Все</option>
+                    <option value="clothes">Одежда</option>
+                    <option value="food">Еда</option>
+                </select>
+            </div>
+        </div>
+        <input type="submit" value="Применить" class="apply-filter-button">
+    </form>
+</div>
+{% endmacro %}
+
+
+{% macro render_content(items) %}
+<div class="wrapper box">
+    {% for item in items %}
+    <div class="item">
+        <div>
+            <div>{{ item["name"] }}</div>
+            <div>{{ item["price"] }}</div>
+            <form action="" method="post">
+                <input type="hidden" name="prod_id" value="{{ item['prod_id'] }}">
+                <input type="submit" value="Купить">
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+
+{% macro render_basket(items) %}
+<div>
+    {% for _, item_data in items.items() %}
+    <div class="basket-item">
+        <div>
+            <div><span>Нзавание: </span>{{ item_data["name"] }}</div>
+            <div><span>цена: </span>{{ item_data["price"] }}</div>
+            <div><span>штук: </span>{{ item_data["cnt"] }}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}

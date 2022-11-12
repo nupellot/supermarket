@@ -3,6 +3,7 @@ import json
 from flask import Flask, render_template, session
 from auth.routes import blueprint_auth
 from blueprint_query.routes import blueprint_query
+from market.routes import blueprint_market
 from report.routes import blueprint_report
 from access import login_required
 
@@ -13,9 +14,11 @@ app.secret_key = 'SuperKey'
 app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_report, url_prefix='/report')
 app.register_blueprint(blueprint_query, url_prefix='/queries')
+app.register_blueprint(blueprint_market, url_prefix='/market')
 
 app.config['db_config'] = json.load(open('configs/db.json'))
 app.config['access_config'] = json.load(open('configs/access.json'))
+app.config['cache_config'] = json.load(open('configs/cache.json'))
 
 
 @app.route('/')
@@ -34,4 +37,6 @@ def exit_func():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5001, debug=True)
+    # app = add_blueprint_access_handler(app, ['blueprint_report'], group_required)
+    # app = add_blueprint_access_handler(app, ['blueprint_market'], external_required)
+    app.run(host='127.0.0.1', port=5001)

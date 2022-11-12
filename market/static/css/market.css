@@ -1,0 +1,36 @@
+#filters {
+    padding: 16px;
+    max-height: 150px;
+}
+
+.select-category-container {
+    margin: 10px;
+}
+
+.apply-filter-button {
+    margin: 10px;
+    background-color: #00FF00;
+}
+
+.item {
+    width: 200px;
+    height: 180px;
+    background-color: #A0A0A0;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.basket-item {
+    width: 200px;
+    background-color: #A0A0A0;
+    margin: 10px;
+    padding: 10px;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-items: center;
+  padding-bottom: 16px;
+}

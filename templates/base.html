@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Base_menu</title>
-    <link href="static/main.css" rel="stylesheet" type="text/css">
+    <link href="static/base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div>
-        <h1 align="center"> Вам доступны следующие действия </h1>
+    <div class="container">
+        <div class="block title-block">
+            Доступные действия
+        </div>
         {% block internal_user %}{% endblock %}
         {% block external_user %}{% endblock %}
-        {% block queries %}{% endblock %}
     </div>
 </body>
 </html>

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block internal_user %}
-<p align="center">
+<div class="container ">
+
+</div>
     <a href="{{ url_for('blueprint_report.start_report') }}">Создание отчетов</a><br><br>
     <a href="{{ url_for('blueprint_report.start_report') }}">Просмотр отчетов</a><br><br>
     <a href="{{ url_for('blueprint_query.queries') }}">Запросы</a><br><br>
     <a href="/exit"> Нажмите для выхода из системы</a>
-</p>
 {% endblock %}
