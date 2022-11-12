@@ -38,12 +38,6 @@ html, body {
     background: rgba(255, 255, 255, 0.8);
 }
 
-.login-card > * {
-    /*outline: 1px solid lime;*/
-    /*width: 100%;*/
-    /*display: none;*/
-}
-
 .login-card > .login-card-logo {
     display: flex;
     justify-content: center;

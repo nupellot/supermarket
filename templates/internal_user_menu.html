@@ -8,4 +8,5 @@
     <a href="{{ url_for('blueprint_report.start_report') }}">Просмотр отчетов</a><br><br>
     <a href="{{ url_for('blueprint_query.queries') }}">Запросы</a><br><br>
     <a href="/exit"> Нажмите для выхода из системы</a>
+    {{session.get('user_group', None)}}
 {% endblock %}

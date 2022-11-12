@@ -25,7 +25,7 @@ app.config['cache_config'] = json.load(open('configs/cache.json'))
 @login_required
 def menu_choice():
     if session.get('user_group', None):
-        return render_template('internal_user_menu.html')
+        return render_template('internal_user_menu.html', session=session)
     return render_template('external_user_menu.html')
 
 
@@ -39,4 +39,4 @@ def exit_func():
 if __name__ == '__main__':
     # app = add_blueprint_access_handler(app, ['blueprint_report'], group_required)
     # app = add_blueprint_access_handler(app, ['blueprint_market'], external_required)
-    app.run(host='127.0.0.1', port=5001)
+    app.run(host='127.0.0.1', port=5001, debug=True)
