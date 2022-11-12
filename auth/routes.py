@@ -40,6 +40,8 @@ def start_auth():
                 # Записываем в сессию полученную из БД информацию о пользователе.
                 session['user_id'] = user_dict['user_id']
                 session['user_group'] = user_dict['user_group']
+                session['user_name'] = user_dict['user_name']
+                session['user_login'] = login
                 session.permanent = True
                 return redirect(url_for('menu_choice'))
             else:  # Не нашёлся пользователь с такими данными.

@@ -7,24 +7,36 @@
 </head>
 <body>
     <div class="container">
-        <div class="item logo">СУПЕРМАРКЕТ</div>
-        <div class="item module-title">Название модуля</div>
-        <div class="item user-info">Информация о пользователе</div>
-        <div class="item module-button">Модуль 1</div>
-        <div class="item module-button">Модуль 2</div>
-        <div class="item module-button">Модуль 3</div>
-        <div class="item content-module">Контент модуля</div>
-        <div class="item credentials">Stas credentials</div>
-    </div>
-
-
-
-<!--    <div class="container">-->
-        <div class="block title-block">
-            Доступные действия
+        <header class="header">
+            <div class="logo-and-login">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-windows" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M17.8 20l-12 -1.5c-1 -.1 -1.8 -.9 -1.8 -1.9v-9.2c0 -1 .8 -1.8 1.8 -1.9l12 -1.5c1.2 -.1 2.2 .8 2.2 1.9v12.1c0 1.2 -1.1 2.1 -2.2 1.9z"></path>
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="4" y1="12" x2="20" y2="12"></line>
+                    </svg>
+                    Supermarket
+                </div>
+                <div class="login">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                       <circle cx="9" cy="7" r="4"></circle>
+                       <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                       <path d="M16 11l2 2l4 -4"></path>
+                    </svg>
+                    <span class="user-group">[{{session.get('user_group', None)}}] </span>
+                    <span class="user-name">{{session.get('user_name', None)}}</span>
+                </div>
+            </div>
+            <div class="modules">
+                {% block internal_user %}{% endblock %}
+                {% block external_user %}{% endblock %}
+            </div>
+        </header>
+        <div class="content">
+            Initial Page
         </div>
-        {% block internal_user %}{% endblock %}
-        {% block external_user %}{% endblock %}
-<!--    </div>-->
+    </div>
 </body>
 </html>
