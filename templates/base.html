@@ -32,10 +32,15 @@
             <div class="modules">
                 {% if session.get('user_group', None) == "admin" %}
                 <a href="{{ url_for('blueprint_report.start_report') }}" class="module">Создание отчетов</a>
-                <a href="{{ url_for('blueprint_report.start_report') }}" class="module">Просмотр отчетов</a>
-                <a href="{{ url_for('blueprint_query.queries') }}" class="module">Запросы</a>
+                <a href="{{ url_for('blueprint_report.start_report') }}" class="module check-report-module">Просмотр отчетов</a>
+                <a href="{{ url_for('blueprint_query.queries') }}" class="module blueprint_query">Запросы</a>
                 {% endif %}
-                <a href="/exit" class="module"> Выход из системы</a>
+                <a href="/exit" class="module">Выход из системы</a>
+                <style>
+                    .{{request.blueprint}} {
+                        text-decoration: underline;
+                    }
+                </style>
             </div>
         </header>
         <div class="content">
