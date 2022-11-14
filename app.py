@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request
 from auth.routes import blueprint_auth
 from blueprint_query.routes import blueprint_query
 from market.routes import blueprint_market
@@ -25,7 +25,7 @@ app.config['cache_config'] = json.load(open('configs/cache.json'))
 @login_required
 def menu_choice():
     if session.get('user_group', None):
-        return render_template('internal_user_menu.html', session=session)
+        return render_template('internal_user_menu.html', session=session, request=request)
     return render_template('external_user_menu.html')
 
 

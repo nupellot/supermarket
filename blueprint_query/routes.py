@@ -16,7 +16,7 @@ from flask import (
 from database.db_work import select
 from database.sql_provider import SQLProvider
 
-blueprint_query = Blueprint('blueprint_query', __name__, template_folder='templates')  # создание blueprint'а
+blueprint_query = Blueprint('blueprint_query', __name__, template_folder='templates', static_folder='static')  # создание blueprint'а
 
 provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))  # создание словаря для текущего blueprint'а
 

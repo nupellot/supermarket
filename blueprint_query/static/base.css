@@ -56,8 +56,6 @@ html, body {
 
 .modules {
     margin-top: 30px;
-    max-width: 100%;
-    /*outline: 1px solid red;*/
 }
 
 .module {
@@ -78,6 +76,10 @@ html, body {
 .module:hover {
     background: rgba(0, 0, 255, 0.37);
     color: black;
+}
+
+.active-module {
+    text-decoration: underline;
 }
 
 .content {

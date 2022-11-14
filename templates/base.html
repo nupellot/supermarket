@@ -25,17 +25,21 @@
                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                        <path d="M16 11l2 2l4 -4"></path>
                     </svg>
-                    <span class="user-group">[{{session.get('user_group', None)}}] </span>
+                    <span class="user-group">[{{session.get('user_group', None)}}]</span>
                     <span class="user-name">{{session.get('user_name', None)}}</span>
                 </div>
             </div>
             <div class="modules">
-                {% block internal_user %}{% endblock %}
-                {% block external_user %}{% endblock %}
+                {% if session.get('user_group', None) == "admin" %}
+                <a href="{{ url_for('blueprint_report.start_report') }}" class="module">Создание отчетов</a>
+                <a href="{{ url_for('blueprint_report.start_report') }}" class="module">Просмотр отчетов</a>
+                <a href="{{ url_for('blueprint_query.queries') }}" class="module">Запросы</a>
+                {% endif %}
+                <a href="/exit" class="module"> Выход из системы</a>
             </div>
         </header>
         <div class="content">
-            Initial Page
+            {% block product_form %}{% endblock %}
         </div>
     </div>
 </body>

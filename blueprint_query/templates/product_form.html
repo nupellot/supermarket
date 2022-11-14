@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Поиск продукта</title>
-    <link rel="stylesheet" href="../../static/product_form.css">
-</head>
+{% extends 'base.html' %}
 
-<body>
-    <div class="container">
-        <h2> Получение информации о продуктах</h2>
-        <form class="SendForm" action="" method ="POST">
-            <label class="ProductNameLabel"  for="product">
-                <div class="Name">Название продукта</div>
-            </label>
+{% block product_form %}
+<link rel="stylesheet" href="static/product_form.css">
+<h2> Получение информации о продуктах</h2>
+<form class="SendForm" action="" method ="POST">
+    <label class="ProductNameLabel"  for="product">
+        <div class="Name">Название продукта</div>
+    </label>
 
-            <input class="ProductNameInput" name = product_name id="product" type = text placeholder="Вкуснейшие пельмени">
-            <input class="ProductNameSend" type = submit value ="Отправить">
-        </form>
-
-    </div>
-
-
-</body>
-</html>
+    <input class="ProductNameInput" name = product_name id="product" type = text placeholder="Вкуснейшие пельмени">
+    <input class="ProductNameSend" type = submit value ="Отправить">
+</form>
+{% endblock %}

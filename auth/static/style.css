@@ -83,6 +83,7 @@ html, body {
 }
 
 .form-item input {
+    font-family: Montserrat, sans-serif;
     background: transparent;
     border: none;
     border-bottom: #510d60 3px solid;
