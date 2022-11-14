@@ -35,7 +35,7 @@
                 <a href="{{ url_for('blueprint_report.start_report') }}" class="module check-report-module">Просмотр отчетов</a>
                 <a href="{{ url_for('blueprint_query.queries') }}" class="module blueprint_query">Запросы</a>
                 {% endif %}
-                <a href="/exit" class="module">Выход из системы</a>
+                <a href="{{ url_for('blueprint_auth.start_auth') }}" class="module">Выход из системы</a>
                 <style>
                     .{{request.blueprint}} {
                         text-decoration: underline;
