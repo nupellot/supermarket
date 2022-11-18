@@ -4,7 +4,7 @@
 {% block product_form %}
 <meta charset="UTF-8">
 <title>Результат поиска продукта</title>
-<link rel="stylesheet" href="static/product_form.css">
+<link href="{{ url_for('blueprint_query.static', filename='product_form.css') }}" rel="stylesheet" type="text/css">
 
 <div class="SendFormContainer">
     <div class="SendFormTitle"> Получение информации о продуктах</div>

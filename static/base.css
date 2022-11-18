@@ -18,7 +18,7 @@ html, body {
 }
 
 .header {
-    margin-top: 10px;
+    margin-top: 15px;
     width: 100%;
 }
 
@@ -26,6 +26,7 @@ html, body {
     /*height: 65px;*/
     display: flex;
     justify-content: space-between;
+    /*outline: 1px solid red;*/
 }
 
 .logo {
@@ -38,20 +39,18 @@ html, body {
     /*background: rgba(0, 255, 196, 0.5);*/
     /*border-radius: 15px;*/
     /*padding: 10px 5px 5px 10px;*/
+
 }
 
 .login {
     display: flex;
     position: relative;
     align-items: center;
+    /*outline: 1px solid red;*/
+    padding-left: 15px;
+    border-radius: 15px;
+    box-shadow: 0 1px .625rem 0 hsla(210, 7%, 0%, .26), 0 .125rem .25rem 0 hsla(210, 7%, 22%, .08);
 }
-/*.user-group:after {*/
-/*    content: 'группа';*/
-/*    position: absolute;*/
-/*    top: 40px;*/
-/*    left: 50px;*/
-/*    font-size: 12px;*/
-/*}*/
 
 .icon {
     margin-right: 10px;
@@ -59,7 +58,17 @@ html, body {
 }
 
 .login > .icon {
-    width: 35px;
+    width: 25px;
+}
+
+.logout > svg {
+    /*outline: 1px solid green;*/
+    color: black;
+    height: 25px;
+    margin-right: 0;
+    margin-left: 15px;
+    margin-top: 5px;
+    /*margin-bottom: 0;*/
 }
 
 .modules {
@@ -89,13 +98,13 @@ html, body {
 }
 
 .content {
-    display: none;
-    width: 100%;
-    min-height: 400px;
+    /*display: none;*/
+    /*width: 100%;*/
+    /*min-height: 400px;*/
     margin-top: 30px;
     box-shadow: 0 1px .625rem 0 hsla(210, 7%, 0%, .26), 0 .125rem .25rem 0 hsla(210, 7%, 22%, .08);
-    border-radius: 10px;
-    padding: 100px;
+    border-radius: 15px;
+    padding: 20px;
     /*overflow: hidden;*/
 }
 
