@@ -51,7 +51,7 @@ class UseDatabase:
         """
         print("Exit")
         if exc_val:
-            print(exc_val)
+            # print(exc_val)
             # print(exc_type)
             if exc_val.args[0] != 'Курсор не создан':
                 self.cursor.close()

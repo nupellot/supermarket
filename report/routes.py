@@ -26,10 +26,11 @@ def start_report():
     if request.method == 'GET':
         return render_template('report_result.html')
     else:
-        input_product = request.form.get('product_name')
-        if input_product:
-            print(input_product)
-            call_proc(current_app.config['db_config'], 'createRaport', '2022', '10')
+        year = int(request.form.get('year'))
+        month = int(request.form.get('month'))
+        if year and month:
+            # print(input_product)
+            call_proc(current_app.config['db_config'], 'createRaport', year, month)
             product_result, schema = select(current_app.config['db_config'], "select * from raport")
             return render_template('report_result.html', schema=schema, result=product_result)
         else:
