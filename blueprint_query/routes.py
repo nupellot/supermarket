@@ -13,7 +13,7 @@ from flask import (
     session, redirect, url_for
 )
 
-from database.db_work import select
+# from database.db_work import select
 from database.sql_provider import SQLProvider
 
 blueprint_query = Blueprint('blueprint_query', __name__, template_folder='templates', static_folder='static')  # создание blueprint'а

@@ -8,6 +8,7 @@ from flask import (
 )
 
 from database.operations import select
+from database.operations import select_dict
 from database.sql_provider import SQLProvider
 
 ##### СОЗДАНИЕ BLUEPRINT'а #####
@@ -61,8 +62,8 @@ def define_user(login: str, password: str) -> Optional[Dict]:
     user_info = None
 
     for sql_search in [sql_internal, sql_external]:
-        # Выполняем готовые запросы. Каждый раз получаем строку с информацией об одной из пользователей в БД.
-        _user_info = select(current_app.config['db_config'], sql_search)
+        # Выполняем готовые запросы. Каждый раз получаем строку с информацией об одном из пользователей в БД.
+        _user_info = select_dict(current_app.config['db_config'], sql_search)
         if _user_info:  # Если в БД нашёлся такой пользователь с такими данными.
             # print('Congratulations ', _user_info)
             user_info = _user_info
