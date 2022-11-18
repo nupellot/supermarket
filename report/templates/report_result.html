@@ -1,14 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Report_result</title>
-    <link type="text/css" href="static/main.css" rel="stylesheet">
-</head>
-<body>
-    <h1 align="center">Результаты отчета</h1><br><br>
-    <div align="center">
-        <a href="{{ url_for('menu_choice') }}">Возврат в меню</a>
-    </div>
-</body>
-</html>
+{% extends 'base.html' %}
+
+
+{% block report %}
+<meta charset="UTF-8">
+<title>Составление отчёта</title>
+<link href="{{ url_for('blueprint_report.static', filename='report.css') }}" rel="stylesheet" type="text/css">
+
+<div class="SendFormContainer">
+    <div class="SendFormTitle"> Введите название продукта для того, чтобы получить их количество</div>
+    <form class="SendForm" action="" method ="POST">
+        <label class="ProductNameLabel"  for="product">
+            <div class="Name">Название продукта</div>
+        </label>
+        <input class="ProductNameInput" name = product_name id="product" type = text placeholder="Вкуснейшие пельмени">
+        <input class="ProductNameSend" type = submit value ="Отправить">
+    </form>
+</div>
+
+
+{% if schema %}
+<div class="ResultContainer">
+    <h2>Описание продукта</h2>
+    <table>
+        <tr>
+            {% for column in schema %}
+            <td> {{column}} </td>
+            {% endfor %}
+        </tr>
+        {% for line in result %}
+        <tr>
+           {% for column in line %}
+            <td> {{column}} </td>
+           {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+{% endblock %}

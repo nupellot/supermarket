@@ -34,8 +34,8 @@ def select(dbconfig: dict, _sql: str):
         # result - Все остальные строки результирующей таблицы.
         result = cursor.fetchall()
     print("select")
-    print(result)
-    print(schema)
+    # print(result)
+    # print(schema)
     return result, schema
 
 
@@ -46,6 +46,9 @@ def call_proc(dbconfig: dict, proc_name: str, *args):
         param_tuple = []
         for arg in args:
             param_tuple.append(arg)
-        print(param_tuple)
+        # param_tuple = tuple(param_tuple)
+        print("tuple: ", param_tuple)
+        print("proc_name", proc_name)
         res = cursor.callproc(proc_name, param_tuple)
+        # print("res: ", res)
     return res

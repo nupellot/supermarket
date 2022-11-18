@@ -10,14 +10,12 @@
         <header class="header">
             <div class="logo-and-login">
                 <div class="logo">
-<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-store" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <line x1="3" y1="21" x2="21" y2="21"></line>
-   <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4"></path>
-   <line x1="5" y1="21" x2="5" y2="10.85"></line>
-   <line x1="19" y1="21" x2="19" y2="10.85"></line>
-   <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4"></path>
-</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-windows" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M17.8 20l-12 -1.5c-1 -.1 -1.8 -.9 -1.8 -1.9v-9.2c0 -1 .8 -1.8 1.8 -1.9l12 -1.5c1.2 -.1 2.2 .8 2.2 1.9v12.1c0 1.2 -1.1 2.1 -2.2 1.9z"></path>
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="4" y1="12" x2="20" y2="12"></line>
+                    </svg>
                     Supermarket
                 </div>
                 <div class="login">
@@ -54,6 +52,7 @@
         </header>
         <div class="content">
             {% block product_form %}{% endblock %}
+            {% block report %}{% endblock %}
         </div>
     </div>
 </body>

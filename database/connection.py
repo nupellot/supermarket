@@ -49,13 +49,16 @@ class UseDatabase:
             exc_val: Значение возможной ошибки при работе менеджера.
             exc_tr: Traceback (подробный текст ошибки) при работе менеджера.
         """
+        print("Exit")
         if exc_val:
-            # print(exc_val)
+            print(exc_val)
             # print(exc_type)
             if exc_val.args[0] != 'Курсор не создан':
                 self.cursor.close()
+                self.conn.commit()
                 self.conn.close()
         else:
+            self.conn.commit()
             self.cursor.close()
             self.conn.close()
         return True
