@@ -1,40 +1,40 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Результат поиска продукта</title>
-    <link rel="stylesheet" href="../static/product_form.css">
-<!--    <link type=" text/css" rel="stylesheet" href="{{url_for('static', filename='sem3.css')}}">-->
-</head>
-<body>
-    <div class="SendFormContainer">
-        <h2> Получение информации о продуктах</h2>
-        <form class="SendForm" action="" method ="POST">
-            <label class="ProductNameLabel"  for="product">
-                <div class="Name">Название продукта</div>
-            </label>
-            <input class="ProductNameInput" name = product_name id="product" type = text placeholder="Вкуснейшие пельмени">
-            <input class="ProductNameSend" type = submit value ="Отправить">
-        </form>
-    </div>
+{% extends 'base.html' %}
 
 
-    <div class="ResultContainer">
-        <h2>Описание продукта</h2>
-        <table>
-            <tr>
-                {% for column in schema %}
-                <td> {{column}} </td>
-                {% endfor %}
-            </tr>
-            {% for line in result %}
-            <tr>
-               {% for column in line %}
-                <td> {{column}} </td>
-               {% endfor %}
-            </tr>
+{% block product_form %}
+<meta charset="UTF-8">
+<title>Результат поиска продукта</title>
+<link rel="stylesheet" href="static/product_form.css">
+
+<div class="SendFormContainer">
+    <div class="SendFormTitle"> Получение информации о продуктах</div>
+    <form class="SendForm" action="" method ="POST">
+        <label class="ProductNameLabel"  for="product">
+            <div class="Name">Название продукта</div>
+        </label>
+        <input class="ProductNameInput" name = product_name id="product" type = text placeholder="Вкуснейшие пельмени">
+        <input class="ProductNameSend" type = submit value ="Отправить">
+    </form>
+</div>
+
+
+{% if schema %}
+<div class="ResultContainer">
+    <h2>Описание продукта</h2>
+    <table>
+        <tr>
+            {% for column in schema %}
+            <td> {{column}} </td>
             {% endfor %}
-        </table>
-    </div>
-</body>
-</html>
+        </tr>
+        {% for line in result %}
+        <tr>
+           {% for column in line %}
+            <td> {{column}} </td>
+           {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+{% endblock %}

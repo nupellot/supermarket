@@ -1,18 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,900&family=Open+Sans:wght@800&family=Roboto+Mono:wght@700&display=swap');
 
-html, body {
-    font-family: 'Montserrat', sans-serif;
-}
+/*html, body {*/
+/*    font-family: 'Montserrat', sans-serif;*/
+/*}*/
 
-body > * {
-    margin-bottom: 50px;
-}
+/*body > * {*/
+/*    margin-bottom: 50px;*/
+/*}*/
 
 .SendFormContainer {
     /*max-width: 90%;*/
     /*margin: 50px;*/
+    margin: 0;
     padding: 0;
+    /*outline: 1px solid red;*/
     /*display: flex;*/
+}
+
+.SendFormTitle {
+    font-size: 25px;
+    margin-bottom: 10px;
 }
 
 
@@ -47,6 +54,7 @@ form.SendForm {
 }
 
 .ProductNameInput, .ProductNameInput:focus {
+    outline: none;
     border-right: none;
     border-left: none;
     border-top: 3px outset rgba(217, 66, 66, 0.9);

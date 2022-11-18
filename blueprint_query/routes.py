@@ -24,7 +24,7 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))  # соз
 @blueprint_query.route('/queries', methods=['GET', 'POST'])
 def queries():
     if request.method == 'GET':
-        return render_template('product_form.html')
+        return render_template('db_result.html')
     else:
         input_product = request.form.get('product_name')
         if input_product:
