@@ -24,17 +24,20 @@ blueprint_report = Blueprint('blueprint_report', __name__, template_folder='temp
 @group_required
 def start_report():
     if request.method == 'GET':
-        return render_template('report_result.html')
+        product_result, schema = select(current_app.config['db_config'], "select * from raport")
+        return render_template('report_result.html', schema=schema, result=product_result)
     else:
-        year = int(request.form.get('year'))
-        month = int(request.form.get('month'))
+        year = request.form.get('year')
+        month = request.form.get('month')
         if year and month:
+            year = int(year)
+            month = int(month)
             # print(input_product)
             call_proc(current_app.config['db_config'], 'createRaport', year, month)
-            product_result, schema = select(current_app.config['db_config'], "select * from raport")
-            return render_template('report_result.html', schema=schema, result=product_result)
-        else:
-            return "Repeat input"
+
+        product_result, schema = select(current_app.config['db_config'], "select * from raport")
+        return render_template('report_result.html', schema=schema, result=product_result)
+
 
 
 

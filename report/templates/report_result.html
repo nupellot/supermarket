@@ -5,9 +5,10 @@
 <meta charset="UTF-8">
 <title>Составление отчёта</title>
 <link href="{{ url_for('blueprint_report.static', filename='report.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{{ url_for('blueprint_query.static', filename='product_form.css') }}" type="text/css">
 
 <div class="SendFormContainer">
-    <div class="SendFormTitle"> Введите название продукта для того, чтобы получить их количество</div>
+    <div class="SendFormTitle"> Введите месяц для получения количества товаров, попавших на склад</div>
     <form class="SendForm" action="" method ="POST">
         <label class="ProductNameLabel"  for="product">
             <div class="Name">Введите дату</div>
