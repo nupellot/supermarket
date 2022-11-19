@@ -1,0 +1,21 @@
+{% macro render_item(item, show_form=False, show_amount=False) %}
+    <div style="border-style: solid; border-color: black; margin: 5px">
+        <span style="color: black;"> Название: </span>
+        <span style="color: green;"> {{ item['prod_name'] }} </span>
+        <span style="color: black;"> Цена: </span>
+        <span style="color: green;"> {{ item['prod_price'] }} </span>
+        {% if show_amount %}
+            <span style="color: black;"> Количество: </span>
+            <span style="color: green;"> {{ item['amount'] }} </span>
+        {% endif %}
+
+        {% if show_form %}
+            <div>
+                <form action="" method="post">
+                    <input type="hidden" name="prod_id" value="{{ item['prod_id'] }}">
+                    <input type="submit" name="action" value="add">
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}

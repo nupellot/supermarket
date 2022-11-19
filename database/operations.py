@@ -33,7 +33,7 @@ def select(dbconfig: dict, _sql: str):
         schema = [column[0] for column in cursor.description]
         # result - Все остальные строки результирующей таблицы.
         result = cursor.fetchall()
-    print("select")
+    # print("select")
     # print(result)
     # print(schema)
     return result, schema

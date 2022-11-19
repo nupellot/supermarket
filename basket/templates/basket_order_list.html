@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Flask project</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div align="center">
+    <br><br>
+    <a href="{{url_for('bp_order.save_order')}}"> Оформить заказ</a> <br><br>
+    <a href="{{url_for('menu_choice')}}"> Вернуться в меню пользователя</a>
+</div>
+
+{% import 'basket_utils.html' as utils %}
+
+<div class="container">
+    <div class="col-md-8">
+        <h2>Все товары</h2>
+        {% if items %}
+        {% for item in items %}
+            {{ utils.render_item(item, show_form = True, show_amount = False) }}
+        {% endfor %}
+        {% else %}
+            <p> Нет доступных товаров</p>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <h2 style="">Ваша корзина</h2>
+        <a style='' href="{{url_for('bp_order.clear_basket')}}">Очистить корзину</a>
+        {% if basket %}
+        {% for key in basket %}
+            {{ utils.render_item(basket[key], show_form = False, show_amount = True) }}
+        {% endfor %}
+        {% else %}
+            <p>Ваша корзина пуста</p>
+        {% endif %}
+    </div>
+    </div>
+</body>
+</div>
+</html>
