@@ -69,16 +69,17 @@ def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
 		if cursor is None:
 			raise ValueError('Курсор не создан')
 		_sql1 = provider.get('insert_order.sql', user_id=user_id)
-		print(_sql1)
+		print("_sql11 = ", _sql1)
 		result1 = cursor.execute(_sql1)
 		if result1 == 1:
 			_sql2 = provider.get('select_order_id.sql', user_id=user_id)
 			cursor.execute(_sql2)
 			order_id = cursor.fetchall()[0][0]
-			print('order_id=', order_id)
+			print('order_id = ', order_id)
 			if order_id:
 				for key in current_basket:
-					print(key, current_basket[key]['amount'])
+					print("key", key)
+					print("current_basket[key]['amount']) = ", current_basket[key]['amount'])
 					prod_amount = current_basket[key]['amount']
 					_sql3 = provider.get('insert_order_list.sql', order_id=order_id, prod_id=key, prod_amount=prod_amount)
 					cursor.execute(_sql3)

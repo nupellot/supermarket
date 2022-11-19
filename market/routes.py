@@ -24,7 +24,7 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 def market_index():
 	db_config = current_app.config['db_config']
 	cache_config = current_app.config['cache_config']
-	# Первые скобки - аргументы для декоратора. Вторые - для исходной функции.
+	# Первые скобки - аргументы для декоратора fetch_from_cache. Вторые - для исходной функции.
 	cached_func = fetch_from_cache('all_items_cached', cache_config)(select_dict)
 
 	if request.method == 'GET':
@@ -39,12 +39,9 @@ def market_index():
 		items = cached_func(db_config, sql)
 
 
-		print("items = ", items)
+		# print("items = ", items)
 		item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
-		# item_description = []
-		# for item in items:
-		# 	if str(item["prod_id"]) == str(prod_id):
-		# 		item_description.append(item)
+
 
 		if not item_description:
 			return render_template('market/item_missing.html')
