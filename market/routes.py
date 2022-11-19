@@ -6,7 +6,7 @@ from flask import (
 	session, redirect, url_for
 )
 
-from database.operations import select
+from database.operations import select, select_dict
 from database.sql_provider import SQLProvider
 from cache.wrapper import fetch_from_cache
 
@@ -24,7 +24,8 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 def market_index():
 	db_config = current_app.config['db_config']
 	cache_config = current_app.config['cache_config']
-	cached_func = fetch_from_cache('all_items_cached', cache_config)(select)
+	# Первые скобки - аргументы для декоратора. Вторые - для исходной функции.
+	cached_func = fetch_from_cache('all_items_cached', cache_config)(select_dict)
 
 	if request.method == 'GET':
 		sql = provider.get('all_items.sql')
@@ -37,7 +38,13 @@ def market_index():
 		sql = provider.get('all_items.sql')
 		items = cached_func(db_config, sql)
 
+
+		print("items = ", items)
 		item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
+		# item_description = []
+		# for item in items:
+		# 	if str(item["prod_id"]) == str(prod_id):
+		# 		item_description.append(item)
 
 		if not item_description:
 			return render_template('market/item_missing.html')

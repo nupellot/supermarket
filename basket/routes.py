@@ -65,7 +65,7 @@ def save_order():
 
 
 def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
-	with DBContextManager(dbconfig) as cursor:
+	with UseDatabase(dbconfig) as cursor:
 		if cursor is None:
 			raise ValueError('Курсор не создан')
 		_sql1 = provider.get('insert_order.sql', user_id=user_id)
