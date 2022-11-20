@@ -19,22 +19,18 @@ def order_index():
 
 	sql = provider.get('all_items.sql')
 	items = select_dict(db_config, sql)
-	for item in items:
-		item['prod_img'] = url_for('static', filename="baltika_9.png")
 
-	print(items)
+	for item in items:
+		if item['prod_img']:
+			item['prod_img'] = url_for('static', filename=item['prod_img'])
+
+	# print(items)
 	if request.method == 'GET':
-		# sql = provider.get('all_items.sql')
-		# items = select_dict(db_config, sql)
 		basket_items = session.get('basket', {})
 		return render_template('basket_order_list.html', items=items, basket=basket_items)
 	else:
 		prod_id = request.form['prod_id']
-		# sql = provider.get('all_items.sql')
-		# items = select_dict(db_config, sql)
-
 		add_to_basket(prod_id, items)
-
 		return redirect(url_for('bp_order.order_index'))
 
 
