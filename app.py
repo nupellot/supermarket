@@ -9,7 +9,7 @@ from basket.routes import blueprint_order
 from access import login_required
 
 
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='templates', static_folder="static")
 app.secret_key = 'SuperKey'
 
 app.register_blueprint(blueprint_auth, url_prefix='/auth')

@@ -4,6 +4,7 @@
         <span style="color: green;"> {{ item['prod_name'] }} </span>
         <span style="color: black;"> Цена: </span>
         <span style="color: green;"> {{ item['prod_price'] }} </span>
+        <img src="{{ item['prod_img'] }}" alt="">
         {% if show_amount %}
             <span style="color: black;"> Количество: </span>
             <span style="color: green;"> {{ item['amount'] }} </span>

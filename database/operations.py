@@ -5,7 +5,7 @@ from database.connection import UseDatabase
 
 # Возвращает результат (набор строк) выполнения sql-запроса к бд, подключенной по db_config
 # В виде словаря.
-def select_dict(db_config: dict, sql: str) -> List:
+def select_dict(db_config: dict, sql: str) -> dict:
     result = []
     with UseDatabase(db_config) as cursor:
 
