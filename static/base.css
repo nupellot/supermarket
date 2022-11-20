@@ -8,6 +8,7 @@ html, body {
     padding: 0;
     /*overflow: hidden;*/
     /*background: linear-gradient(to right, blue, pink);*/
+    /*background-image: url('pivo.jpg');*/
 }
 
 .container {
@@ -24,9 +25,11 @@ html, body {
 
 .logo-and-login {
     /*height: 65px;*/
-    display: flex;
-    justify-content: space-between;
+    /*display: flex;*/
+    /*justify-content: space-between;*/
     /*outline: 1px solid red;*/
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .logo {
@@ -47,9 +50,57 @@ html, body {
     margin-right: 15px;
 }
 
-.login {
+.search-container {
+    /*outline: 1px solid red;*/
     display: flex;
-    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.search {
+    /*outline: 1px solid green;*/
+    width: 85%;
+    height: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 1px .625rem 0 hsla(210, 7%, 0%, .26), 0 .125rem .25rem 0 hsla(210, 7%, 22%, .08);
+}
+
+.search > .icon {
+    margin-left: 5px;
+}
+
+.search > input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 20px;
+    height: 85%;
+    margin-right: 15px;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+
+.login-container {
+    display: flex;
+    height: 85%;
+    /*outline: 1px solid blue;*/
+}
+
+.login {
+    /*outline: 1px solid red;*/
+    margin-left: auto;
+    /*height: 100%;*/
+    /*margin: auto;*/
+    display: flex;
+    /*position: relative;*/
     align-items: center;
     /*outline: 1px solid red;*/
     padding-left: 15px;
