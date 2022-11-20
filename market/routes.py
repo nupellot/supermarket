@@ -26,17 +26,19 @@ def market_index():
 	cache_config = current_app.config['cache_config']
 	# Первые скобки - аргументы для декоратора fetch_from_cache. Вторые - для исходной функции.
 	cached_func = fetch_from_cache('all_items_cached', cache_config)(select_dict)
+	sql = provider.get('all_items.sql')
+	items = cached_func(db_config, sql)
 
 	if request.method == 'GET':
-		sql = provider.get('all_items.sql')
-		items = cached_func(db_config, sql)
+		# sql = provider.get('all_items.sql')
+		# items = cached_func(db_config, sql)
 
 		basket_items = session.get('basket', {})
 		return render_template('market/index.html', items=items, basket_items=basket_items)
-	else:
+	else:  # Был отправлен POST-запрос (Заполнена форма)
 		prod_id = request.form['prod_id']
-		sql = provider.get('all_items.sql')
-		items = cached_func(db_config, sql)
+		# sql = provider.get('all_items.sql')
+		# items = cached_func(db_config, sql)
 
 
 		# print("items = ", items)
