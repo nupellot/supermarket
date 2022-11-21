@@ -27,5 +27,11 @@ def catalog():
     db_config = current_app.config['db_config']
     sql = provider.get('all_items.sql')
     items = select_dict(db_config, sql)
+
+    for item in items:
+        if item['prod_img']:
+            item['prod_img'] = url_for('static', filename=item['prod_img'])
+    print("items = ", items)
+
     return render_template('index.html', items=items)
 

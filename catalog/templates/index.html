@@ -5,12 +5,14 @@
 <meta charset="UTF-8">
 <title>Поиск</title>
 <link href="{{ url_for('bp_catalog.static', filename='style.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('bp_catalog.static', filename='catalog.css') }}" rel="stylesheet" type="text/css">
+
 
 {% if items %}
 <div class="result-container">
     {% for item in items %}
-    <div class="rusult-item">
-        <img src="{{ item['prod-img'] }}" alt="" class="result-img">
+    <div class="result-item">
+        <img src="{{ item['prod_img'] }}" alt="" class="result-img">
         <div class="info">{{ item['prod_name'] }}</div>
         <div class="price-and-basket">
             <div class="price">{{ item['prod_price'] }}</div>
