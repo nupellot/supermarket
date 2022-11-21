@@ -23,15 +23,28 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))  # соз
 
 @blueprint_catalog.route('/', methods=['GET', 'POST'])
 def catalog():
-    print("IM catalog")
     db_config = current_app.config['db_config']
-    sql = provider.get('all_items.sql')
-    items = select_dict(db_config, sql)
+    if request.method == "GET":
+        sql = provider.get('all_items.sql')
+        items = select_dict(db_config, sql)
 
-    for item in items:
-        if item['prod_img']:
-            item['prod_img'] = url_for('static', filename=item['prod_img'])
-    print("items = ", items)
+        for item in items:
+            if item['prod_img']:
+                item['prod_img'] = url_for('static', filename=item['prod_img'])
+        print(request.method)
 
-    return render_template('index.html', items=items)
+        return render_template('index.html', items=items)
+
+    if request.method == "POST":
+        db_config = current_app.config['db_config']
+        input_product = request.form.get('product_name')
+        sql = provider.get('product.sql', input_product=input_product)
+        items = select_dict(db_config, sql)
+
+        for item in items:
+            if item['prod_img']:
+                item['prod_img'] = url_for('static', filename=item['prod_img'])
+        print(request.method)
+
+        return render_template('index.html', items=items, query=input_product)
 

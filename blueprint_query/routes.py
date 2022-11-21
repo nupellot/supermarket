@@ -24,13 +24,13 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))  # соз
 @blueprint_query.route('/', methods=['GET', 'POST'])
 def queries():
     if request.method == 'GET':
-        return render_template('index.html')
+        return render_template('db_result.html')
     else:
         input_product = request.form.get('product_name')
         if input_product:
             _sql = provider.get('product.sql', input_product=input_product)
             print(current_app, _sql)
             product_result, schema = select(current_app.config['db_config'], _sql)
-            return render_template('index.html', schema=schema, result=product_result)
+            return render_template('db_result.html', schema=schema, result=product_result)
         else:
             return "Repeat input"

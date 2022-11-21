@@ -25,7 +25,7 @@ app.config['access_config'] = json.load(open('configs/access.json'))
 app.config['cache_config'] = json.load(open('configs/cache.json'))
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @login_required
 def menu_choice():
     return redirect(url_for("bp_catalog.catalog"))

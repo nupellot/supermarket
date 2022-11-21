@@ -1,3 +1,3 @@
-select prod_id AS "ID", prod_name AS "Name", prod_measure AS "Measure", prod_price AS "Price"
+select prod_id, prod_name, prod_measure, prod_price, prod_img
 from product
-where prod_name='$input_product'
+where prod_name LIKE '%$input_product%'

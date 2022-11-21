@@ -17,7 +17,7 @@ def select_dict(db_config: dict, sql: str) -> dict:
 
         for row in cursor.fetchall():
             result.append(dict(zip(schema, row)))
-    print(f"result_dict: {result}")
+    # print(f"result_dict: {result}")
     return result
 
 
