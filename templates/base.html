@@ -8,16 +8,30 @@
 <body>
     <div class="container">
         <header class="header">
-            <div class="logo-and-login">
-                <a class="logo" href="{{url_for('menu_choice')}}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-windows" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <div class="upper-line">
+                <a class="logo-container" href="{{url_for('menu_choice')}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="logo-icon icon-tabler icon-tabler-brand-windows" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M17.8 20l-12 -1.5c-1 -.1 -1.8 -.9 -1.8 -1.9v-9.2c0 -1 .8 -1.8 1.8 -1.9l12 -1.5c1.2 -.1 2.2 .8 2.2 1.9v12.1c0 1.2 -1.1 2.1 -2.2 1.9z"></path>
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="4" y1="12" x2="20" y2="12"></line>
                     </svg>
-                    Supermarket
+                    <span class="logo-name">
+                        Supermarket
+                    </span>
                 </a>
+
+                <div class="orders-container">
+                    Заказы
+                    <svg xmlns="http://www.w3.org/2000/svg" class="order-icon icon-tabler icon-tabler-package" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                       <polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3"></polyline>
+                       <line x1="12" y1="12" x2="20" y2="7.5"></line>
+                       <line x1="12" y1="12" x2="12" y2="21"></line>
+                       <line x1="12" y1="12" x2="4" y2="7.5"></line>
+                       <line x1="16" y1="5.25" x2="8" y2="9.75"></line>
+                    </svg>
+                </div>
 
                 <div class="search-container">
                     <form class="search" for="product" method="POST">
@@ -28,6 +42,16 @@
                         </svg>
                         <input type="text" name="product_name" id="product" value="{{ query }}">
                     </form>
+                </div>
+
+                <div class="basket-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="basket-icon icon-tabler icon-tabler-basket" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                       <polyline points="7 10 12 4 17 10"></polyline>
+                       <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z"></path>
+                       <circle cx="12" cy="15" r="2"></circle>
+                    </svg>
+                    Корзина
                 </div>
 
                 <div class="login-container">

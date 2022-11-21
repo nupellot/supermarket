@@ -58,7 +58,8 @@ def save_order():
 	user_id = session.get('user_id')
 	current_basket = session.get('basket', {})
 	order_id = save_order_with_list(current_app.config['db_config'], user_id, current_basket)
-	print(current_basket)
+	# print(current_basket)
+	print("GOT order_id = ", order_id)
 	if order_id:
 		session.pop('basket')
 		return render_template('order_created.html', order_id=order_id)
@@ -73,18 +74,24 @@ def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
 		_sql1 = provider.get('insert_order.sql', user_id=user_id)
 		print("_sql11 = ", _sql1)
 		result1 = cursor.execute(_sql1)
+		print("result1 = ", result1)
 		if result1 == 1:
+			# print("RESULT 1")
 			_sql2 = provider.get('select_order_id.sql', user_id=user_id)
+			# print("_sql2 = ", _sql2)
 			cursor.execute(_sql2)
 			order_id = cursor.fetchall()[0][0]
 			print('order_id = ', order_id)
 			if order_id:
+				print("AGAIN order_id ", order_id)
 				for key in current_basket:
-					print("key", key)
-					print("current_basket[key]['amount']) = ", current_basket[key]['amount'])
+					# print("key = ", key)
+					# print("current_basket[key]['amount']) = ", current_basket[key]['amount'])
 					prod_amount = current_basket[key]['amount']
 					_sql3 = provider.get('insert_order_list.sql', order_id=order_id, prod_id=key, prod_amount=prod_amount)
 					cursor.execute(_sql3)
+					print("CYCLED order_id ", order_id)
+				print("SENT order_id ", order_id)
 				return order_id
 
 
