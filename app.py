@@ -1,8 +1,9 @@
 import json
 
-from flask import Flask, render_template, session, request
+from flask import Flask, render_template, session, request, redirect, url_for
 from auth.routes import blueprint_auth
 from blueprint_query.routes import blueprint_query
+from catalog.routes import blueprint_catalog
 from market.routes import blueprint_market
 from report.routes import blueprint_report
 from basket.routes import blueprint_order
@@ -17,6 +18,7 @@ app.register_blueprint(blueprint_report, url_prefix='/report')
 app.register_blueprint(blueprint_query, url_prefix='/queries')
 app.register_blueprint(blueprint_market, url_prefix='/market')
 app.register_blueprint(blueprint_order, url_prefix='/basket')
+app.register_blueprint(blueprint_catalog, url_prefix='/catalog')
 
 app.config['db_config'] = json.load(open('configs/db.json'))
 app.config['access_config'] = json.load(open('configs/access.json'))
@@ -26,7 +28,8 @@ app.config['cache_config'] = json.load(open('configs/cache.json'))
 @app.route('/')
 @login_required
 def menu_choice():
-    return render_template("base.html", session=session, request=request)
+    return redirect(url_for("bp_catalog.catalog"))
+    # return render_template("base.html", session=session, request=request)
     # if session.get('user_group', None):
     #     return render_template('internal_user_menu.html', session=session, request=request)
     # return render_template('external_user_menu.html')
