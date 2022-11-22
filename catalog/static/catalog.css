@@ -29,3 +29,36 @@
     /*max-height: 100%;*/
     /*background-clip: ;*/
 }
+
+.prod-description {
+    color: gray;
+    font-size: 13px;
+}
+
+
+.price-and-basket {
+    outline: 3px solid green;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    grid-template-columns: 1fr 1fr;
+    max-width: 100%;
+}
+
+.pick-container {
+    height: 100%;
+    outline: 3px solid red;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.pick-container > input {
+    width: 30px;
+    height: 100%;
+}
+
+.pick-container > * {
+    outline: 3px solid blue;
+    height: 100%;
+}

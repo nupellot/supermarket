@@ -21,7 +21,7 @@
                     </span>
                 </a>
 
-                <div class="orders-container">
+                <a class="orders-container" href="{{ url_for("bp_order.order_index") }}">
                     Заказы
                     <svg xmlns="http://www.w3.org/2000/svg" class="order-icon icon-tabler icon-tabler-package" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -31,7 +31,7 @@
                        <line x1="12" y1="12" x2="4" y2="7.5"></line>
                        <line x1="16" y1="5.25" x2="8" y2="9.75"></line>
                     </svg>
-                </div>
+                </a>
 
                 <div class="search-container">
                     <form class="search" for="product" method="POST">
@@ -44,7 +44,7 @@
                     </form>
                 </div>
 
-                <div class="basket-container">
+                <a class="basket-container" href="{{ url_for("blueprint_market.market_index") }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="basket-icon icon-tabler icon-tabler-basket" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                        <polyline points="7 10 12 4 17 10"></polyline>
@@ -52,7 +52,7 @@
                        <circle cx="12" cy="15" r="2"></circle>
                     </svg>
                     Корзина
-                </div>
+                </a>
 
                 <div class="login-container">
                     <div class="login">

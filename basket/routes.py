@@ -28,7 +28,7 @@ def order_index():
 	if request.method == 'GET':
 		basket_items = session.get('basket', {})
 		return render_template('basket_order_list.html', items=items, basket=basket_items)
-	else:
+	if request.method == 'POST':
 		prod_id = request.form['prod_id']
 		add_to_basket(prod_id, items)
 		return redirect(url_for('bp_order.order_index'))
@@ -59,7 +59,7 @@ def save_order():
 	current_basket = session.get('basket', {})
 	order_id = save_order_with_list(current_app.config['db_config'], user_id, current_basket)
 	# print(current_basket)
-	print("GOT order_id = ", order_id)
+	# print("GOT order_id = ", order_id)
 	if order_id:
 		session.pop('basket')
 		return render_template('order_created.html', order_id=order_id)
