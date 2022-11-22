@@ -34,15 +34,17 @@
                 </a>
 
                 <div class="search-container">
-                    <form class="search" for="product" method="POST">
+                    <form class="search" method="POST" action="">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                            <circle cx="10" cy="10" r="7"></circle>
                            <line x1="21" y1="21" x2="15" y2="15"></line>
                         </svg>
                         <input type="text" name="product_name" id="product" value="{{ query }}">
+                        <input type="hidden" name="search" value="search" class="search-submit-button">
                     </form>
                 </div>
+
 
                 <a class="basket-container" href="{{ url_for("blueprint_market.market_index") }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="basket-icon icon-tabler icon-tabler-basket" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -52,6 +54,7 @@
                        <circle cx="12" cy="15" r="2"></circle>
                     </svg>
                     Корзина
+                    <span class="basket-amount">{{ basket_amount }}</span>
                 </a>
 
                 <div class="login-container">

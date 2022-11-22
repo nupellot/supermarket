@@ -24,17 +24,37 @@ def order_index():
 		if item['prod_img']:
 			item['prod_img'] = url_for('static', filename=item['prod_img'])
 
+	basket_items = session.get('basket', {})
 	# print(items)
 	if request.method == 'GET':
-		basket_items = session.get('basket', {})
-		return render_template('basket_order_list.html', items=items, basket=basket_items)
+		return render_template('basket.html', items=basket_items)
 	if request.method == 'POST':
-		prod_id = request.form['prod_id']
-		add_to_basket(prod_id, items)
-		return redirect(url_for('bp_order.order_index'))
+		# print(request.form)
+		prod_id = request.form["prod_id"]
+		if request.form["plus"] == "+":
+			increase_amount_for_item_in_basket(prod_id)
+		elif request.form["minus"] == "-":
+			decrease_amount_for_item_in_basket(prod_id)
+		else:
+			set_amount_for_item_in_basket(prod_id, int(request.form["amount"]))
+
+	# Нужно преобразовать словарь словарей в массив словарей.
+	print("items = ", items)
+	print("basket_items = ", basket_items)
+	items = []
+	for item in basket_items:  # Переносим конкретный item.
+		# print(item)
+		temp_dict = {'prod_id': item}
+		for i in basket_items[item]:
+			temp_dict[i] = basket_items[item][i]
+		items.append(temp_dict)
+	print("new items = ", items)
+
+	return render_template('basket.html', items=basket_items)
 
 
-def add_to_basket(prod_id: str, items:dict):
+def add_to_basket(prod_id: str, items: dict):
+
 	item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
 	item_description = item_description[0]
 	curr_basket = session.get('basket', {})
@@ -46,11 +66,51 @@ def add_to_basket(prod_id: str, items:dict):
 		curr_basket[prod_id] = {
 				'prod_name': item_description['prod_name'],
 				'prod_price': item_description['prod_price'],
+				'prod_img': item_description['prod_img'],
+				'prod_measure': item_description['prod_measure'],
 				'amount': 1
 			}
 		session['basket'] = curr_basket
 		session.permanent = True
 	return True
+
+
+
+def remove_from_basket(prod_id: str, items: dict):
+
+	item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
+	item_description = item_description[0]
+	curr_basket = session.get('basket', {})
+	print("curr_basket = ", curr_basket)
+
+	if prod_id in curr_basket:
+		curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] - 1
+	# else:
+	# 	curr_basket[prod_id] = {
+	# 			'prod_name': item_description['prod_name'],
+	# 			'prod_price': item_description['prod_price'],
+	# 			'prod_img': item_description['prod_img'],
+	# 			'prod_measure': item_description['prod_measure'],
+	# 			'amount': 1
+	# 		}
+	# 	session['basket'] = curr_basket
+	# 	session.permanent = True
+	return True
+
+
+def increase_amount_for_item_in_basket(prod_id):
+	curr_basket = session.get('basket', {})
+	curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] + 1
+
+
+def decrease_amount_for_item_in_basket(prod_id):
+	curr_basket = session.get('basket', {})
+	curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] - 1
+
+
+def set_amount_for_item_in_basket(prod_id, amount=7):
+	curr_basket = session.get('basket', {})
+	curr_basket[prod_id]['amount'] = amount
 
 
 @blueprint_order.route('/save_order', methods=['GET', 'POST'])

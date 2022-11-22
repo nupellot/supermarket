@@ -22,13 +22,14 @@
             <div class="price">{{ item['prod_price'] }}</div>
             <form class="pick-container" method="post">
 
-                <input type="button" value="+" class="plus" name="plus">
+                <input type="submit" value="-" class="minus" name="minus">
 
+                <input type="number" class="amount" name="amount" value="{{ item['amount'] }}">
                 <input class="prod_identifier" type="hidden" name="prod_id" value="{{ item['prod_id'] }}">
 
-                <input type="text" class="amount" name="amount" value="{{ curr_basket[prod_id]['amount'] }}">
+                <input type="hidden" name="product_name" id="product" value="{{ query }}">
 
-                <input type="button" value="-" class="minus" name="minus">
+                <input type="submit" value="+" class="plus" name="plus">
 
             </form>
         </div>

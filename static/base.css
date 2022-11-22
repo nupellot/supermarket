@@ -108,6 +108,10 @@ a:visited {
     margin-right: 15px;
 }
 
+.search-submit-button {
+    display: none;
+}
+
 input:focus {
     outline: none;
 }
