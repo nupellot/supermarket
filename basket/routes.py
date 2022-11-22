@@ -38,6 +38,7 @@ def add_to_basket(prod_id: str, items:dict):
 	item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
 	item_description = item_description[0]
 	curr_basket = session.get('basket', {})
+	print("curr_basket = ", curr_basket)
 
 	if prod_id in curr_basket:
 		curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] + 1
