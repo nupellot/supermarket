@@ -16,10 +16,12 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 # @external_required
 def order_index():
 	db_config = current_app.config['db_config']
+	sql = provider.get("all_items.sql")
+	items = select_dict(db_config, sql)
 
-	if request.method == "GET":
-		sql = provider.get('all_items.sql')
-		items = select_dict(db_config, sql)
+	# if request.method == "GET":
+		# sql = provider.get('all_items.sql')
+		# items = select_dict(db_config, sql)
 
 	if request.method == "POST":
 		print("request.form = ", request.form)
@@ -28,18 +30,19 @@ def order_index():
 			return redirect(url_for("menu_choice"))
 		# input_product = request.form.get("product_name")
 		# sql = provider.get('product.sql', input_product=input_product)
-		sql = provider.get("all_items.sql")
-		items = select_dict(db_config, sql)
 
-		if request.form.get("amount") and session.get('basket', {})[request.form["prod_id"]]["amount"] != int(request.form.get("amount")):
+
+		is_amount_changed = False
+		if request.form.get("amount"):
 			prod_id = request.form["prod_id"]
-			set_amount_for_item_in_basket(prod_id, int(request.form.get("amount")))
-		elif request.form.get("plus"):
-			prod_id = request.form["prod_id"]
-			add_to_basket(prod_id, items)
-		elif request.form.get("minus"):
-			prod_id = request.form["prod_id"]
-			remove_from_basket(prod_id, items)
+			is_amount_changed = set_amount_for_item_in_basket(prod_id, int(request.form.get("amount")), items)
+		if not is_amount_changed:
+			if request.form.get("plus"):
+				prod_id = request.form["prod_id"]
+				add_to_basket(prod_id, items)
+			elif request.form.get("minus"):
+				prod_id = request.form["prod_id"]
+				remove_from_basket(prod_id, items)
 
 	basket_items = session.get('basket', {})
 
@@ -63,7 +66,7 @@ def order_index():
 	for item in items:
 		amount_in_basket += item["amount"]
 
-	return render_template('catalog.html', items=items, amount_in_basket=amount_in_basket)
+	return render_template('basket.html', items=items, amount_in_basket=amount_in_basket)
 
 
 def add_to_basket(prod_id: str, items: dict):
@@ -74,7 +77,7 @@ def add_to_basket(prod_id: str, items: dict):
 	# print("curr_basket = ", curr_basket)
 
 	if prod_id in curr_basket:
-		curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] + 1
+		increase_amount_for_item_in_basket(prod_id)
 	else:
 		curr_basket[prod_id] = {
 				'prod_name': item_description['prod_name'],
@@ -113,7 +116,8 @@ def remove_from_basket(prod_id: str, items: dict):
 
 def increase_amount_for_item_in_basket(prod_id):
 	curr_basket = session.get('basket', {})
-	curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] + 1
+	if curr_basket[prod_id]['amount'] + 1 <= 99:
+		curr_basket[prod_id]['amount'] += 1
 
 
 def decrease_amount_for_item_in_basket(prod_id):
@@ -121,11 +125,31 @@ def decrease_amount_for_item_in_basket(prod_id):
 	curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] - 1
 
 
-def set_amount_for_item_in_basket(prod_id, amount):
-	print("prod_id, amount ", prod_id, amount)
+def set_amount_for_item_in_basket(prod_id, amount, items):
+	item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
+	item_description = item_description[0]
+	# print("prod_id, amount ", prod_id, amount)
 	curr_basket = session.get('basket', {})
-	curr_basket[prod_id]['amount'] = amount
+	# curr_basket[prod_id]['amount'] = amount
 	session['basket'] = curr_basket
+
+	if prod_id in curr_basket:
+		if curr_basket[prod_id]['amount'] == amount:
+			return False
+		else:
+			curr_basket[prod_id]['amount'] = amount
+			return True
+	else:
+		curr_basket[prod_id] = {
+				'prod_name': item_description['prod_name'],
+				'prod_price': item_description['prod_price'],
+				'prod_img': item_description['prod_img'],
+				'prod_measure': item_description['prod_measure'],
+				'amount': amount
+		}
+		session['basket'] = curr_basket
+		session.permanent = True
+		return True
 
 
 @blueprint_order.route('/save_order', methods=['GET', 'POST'])

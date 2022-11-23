@@ -45,22 +45,24 @@ def catalog():
         input_product = ""
 
     if request.method == "POST":
-        # print("request.form = ", request.form)
+        print("request.form = ", request.form)
 
         input_product = request.form.get("product_name")
         sql = provider.get('product.sql', input_product=input_product)
         items = select_dict(db_config, sql)
 
-        if request.form.get("amount") and session.get('basket', {})[request.form["prod_id"]]["amount"] != int(
-                request.form.get("amount")):
+        is_amount_changed = False
+        if request.form.get("amount"):
             prod_id = request.form["prod_id"]
-            set_amount_for_item_in_basket(prod_id, int(request.form.get("amount")))
-        elif request.form.get("plus"):
-            prod_id = request.form["prod_id"]
-            add_to_basket(prod_id, items)
-        elif request.form.get("minus"):
-            prod_id = request.form["prod_id"]
-            remove_from_basket(prod_id, items)
+            is_amount_changed = set_amount_for_item_in_basket(prod_id, int(request.form.get("amount")), items)
+        if not is_amount_changed:
+            if request.form.get("plus"):
+                prod_id = request.form["prod_id"]
+                add_to_basket(prod_id, items)
+            elif request.form.get("minus"):
+                prod_id = request.form["prod_id"]
+                remove_from_basket(prod_id, items)
+
 
     basket_items = session.get('basket', {})
 

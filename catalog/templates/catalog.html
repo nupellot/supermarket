@@ -3,8 +3,7 @@
 
 {% block catalog %}
 <meta charset="UTF-8">
-<title>Поиск</title>
-<link href="{{ url_for('bp_catalog.static', filename='style.css') }}" rel="stylesheet" type="text/css">
+<title>Supermarket</title>
 <link href="{{ url_for('bp_catalog.static', filename='catalog.css') }}" rel="stylesheet" type="text/css">
 
 
@@ -37,4 +36,9 @@
     {% endfor %}
 </div>
 {% endif %}
+
+{% block basket %}{% endblock %}
+
 {% endblock %}
+
+
