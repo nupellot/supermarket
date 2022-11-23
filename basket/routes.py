@@ -21,22 +21,15 @@ def order_index():
 		sql = provider.get('all_items.sql')
 		items = select_dict(db_config, sql)
 
-		for item in items:
-			if item['prod_img']:
-				item['prod_img'] = url_for('static', filename=item['prod_img'])
-		# print(request.method)
-
-		return render_template('catalog.html', items=items)
-
 	if request.method == "POST":
 		print("request.form = ", request.form)
 
-		input_product = request.form.get("product_name")
-		sql = provider.get('product.sql', input_product=input_product)
-		items = select_dict(db_config, sql)
-
 		if request.form.get("search"):
 			return redirect(url_for("menu_choice"))
+		# input_product = request.form.get("product_name")
+		# sql = provider.get('product.sql', input_product=input_product)
+		sql = provider.get("all_items.sql")
+		items = select_dict(db_config, sql)
 
 		if request.form.get("amount") and session.get('basket', {})[request.form["prod_id"]]["amount"] != int(request.form.get("amount")):
 			prod_id = request.form["prod_id"]
@@ -48,26 +41,25 @@ def order_index():
 			prod_id = request.form["prod_id"]
 			remove_from_basket(prod_id, items)
 
-		basket_items = session.get('basket', {})
+	basket_items = session.get('basket', {})
 
-		# Дорабатываем содержимое basket: дополняем адреса картинок и кол-во в корзине.
-		for item in items:
-			if item['prod_img']:
-				item['prod_img'] = url_for('static', filename=item['prod_img'])
-			if str(item["prod_id"]) in basket_items:
-				item["amount"] = basket_items[str(item["prod_id"])]["amount"]
+	# Дорабатываем содержимое basket: дополняем адреса картинок и кол-во в корзине.
+	for item in items:
+		if item['prod_img']:
+			item['prod_img'] = url_for('static', filename=item['prod_img'])
+		if str(item["prod_id"]) in basket_items:
+			item["amount"] = basket_items[str(item["prod_id"])]["amount"]
 
+	print("items = ", items)
+	i = 0
+	while i < len(items):
+		print("item = ", items[i])
+		if "amount" not in items[i] or items[i]["amount"] <= 0:
+			items.remove(items[i])
+			i -= 1
+		i += 1
 
-		# print("items = ", items)
-		i = 0
-		while i < len(items):
-			# print("item = ", items[i])
-			if "amount" not in items[i] or items[i]["amount"] >= 0:
-				items.remove(items[i])
-				i -= 1
-			i += 1
-
-		return render_template('catalog.html', items=items, query=input_product)
+	return render_template('catalog.html', items=items)
 
 
 def add_to_basket(prod_id: str, items: dict):
