@@ -27,6 +27,7 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))  # соз
 @blueprint_catalog.route('/', methods=['GET', 'POST'])
 def catalog():
     db_config = current_app.config['db_config']
+
     if request.method == "GET":
         sql = provider.get('all_items.sql')
         items = select_dict(db_config, sql)
@@ -36,51 +37,25 @@ def catalog():
                 item['prod_img'] = url_for('static', filename=item['prod_img'])
         print(request.method)
 
-        return render_template('catalog.html', items=items, basket=session.get('basket', {}))
+        return render_template('catalog.html', items=items)
 
     if request.method == "POST":
-        # print(request.form["product_name"])
-        print("request.form = ", request.form)
-        # prod_id = request.form["prod_id"]
-        # print("")
+        # print("request.form = ", request.form)
 
         input_product = request.form.get("product_name")
         sql = provider.get('product.sql', input_product=input_product)
         items = select_dict(db_config, sql)
 
-
-        # if request.form.get("search"):  # Мы имеем дело с поисковой формой.
-
-            # return render_template('catalog.html', items=items, query=input_product)
-        if request.form.get("plus"):
-            #
-            # for item in items:
-            #     if item['prod_img']:
-            #         item['prod_img'] = url_for('static', filename=item['prod_img'])
+        if request.form.get("amount") and session.get('basket', {})[request.form["prod_id"]]["amount"] != int(
+                request.form.get("amount")):
+            prod_id = request.form["prod_id"]
+            set_amount_for_item_in_basket(prod_id, int(request.form.get("amount")))
+        elif request.form.get("plus"):
             prod_id = request.form["prod_id"]
             add_to_basket(prod_id, items)
-            # print("curbusket = ", session.get('basket', {}))
-            # print(session.get('basket', {})['1']['amount'])
-            # return render_template('catalog.html', basket=session.get('basket', {}), items=items, query=input_product)
         elif request.form.get("minus"):
-
-            # for item in items:
-            #     if item['prod_img']:
-            #         item['prod_img'] = url_for('static', filename=item['prod_img'])
             prod_id = request.form["prod_id"]
             remove_from_basket(prod_id, items)
-            # return render_template('catalog.html', items=items, query=input_product,
-            #                        basket=session.get('basket', {}))
-        elif request.form.get("amount"):
-
-            prod_id = request.form["prod_id"]
-            set_amount_for_item_in_basket(prod_id, int(request.form["amount"]))
-            # for item in items:
-            #     if item['prod_img']:
-            #         item['prod_img'] = url_for('static', filename=item['prod_img'])
-            # return render_template('catalog.html', items=items, query=input_product,
-            #                        basket=session.get('basket', {}))
-
 
         basket_items = session.get('basket', {})
 
@@ -91,33 +66,7 @@ def catalog():
             if str(item["prod_id"]) in basket_items:
                 item["amount"] = basket_items[str(item["prod_id"])]["amount"]
 
-        print("new items = ", items)
+        # print("new items = ", items)
 
         return render_template('catalog.html', items=items, query=input_product)
-        #
-        #
-        #
-        #
-        # # input_product = request.form.get('product_name')
-        # if not request.form["search"]:  # Мы имеем дело с поисковой формой.
-        #     # input_product = request.form.get('product_name')
-        #     prod_id = request.form["prod_id"]
-        #     if request.form["plus"]:
-        #         increase_amount_for_item_in_basket(prod_id)
-        #     elif request.form["minus"]:
-        #         decrease_amount_for_item_in_basket(prod_id)
-        #     else:
-        #         set_amount_for_item_in_basket(prod_id, int(request.form["amount"]))
-        #
-        # db_config = current_app.config['db_config']
-        # # input_product = request.form.get('product_name')
-        # sql = provider.get('product.sql', input_product=input_product)
-        # items = select_dict(db_config, sql)
-        #
-        # for item in items:
-        #     if item['prod_img']:
-        #         item['prod_img'] = url_for('static', filename=item['prod_img'])
-        # print(request.method)
-        #
-        # return render_template('catalog.html', items=items, query=input_product, basket_amount=len(session.get('basket', {})))
-        #
+
