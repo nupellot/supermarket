@@ -142,6 +142,13 @@ input:focus {
     width: 30px;
 }
 
+.basket-amount {
+    color: white;
+    background: blue;
+    border-radius: 15px;
+    padding: 5px 10px 5px 10px;
+    margin-left: 10px;
+}
 
 .orders-container {
     margin-left: auto;

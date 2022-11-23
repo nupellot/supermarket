@@ -35,13 +35,14 @@ def catalog():
         basket_items = session.get('basket', {})
 
         # Дорабатываем содержимое basket: дополняем адреса картинок и кол-во в корзине.
-        for item in items:
-            if item['prod_img']:
-                item['prod_img'] = url_for('static', filename=item['prod_img'])
-            if str(item["prod_id"]) in basket_items:
-                item["amount"] = basket_items[str(item["prod_id"])]["amount"]
+        # for item in items:
+        #     if item['prod_img']:
+        #         item['prod_img'] = url_for('static', filename=item['prod_img'])
+        #     if str(item["prod_id"]) in basket_items:
+        #         item["amount"] = basket_items[str(item["prod_id"])]["amount"]
 
-        return render_template('catalog.html', items=items)
+        # return render_template('catalog.html', items=items)
+        input_product = ""
 
     if request.method == "POST":
         # print("request.form = ", request.form)
@@ -61,16 +62,21 @@ def catalog():
             prod_id = request.form["prod_id"]
             remove_from_basket(prod_id, items)
 
-        basket_items = session.get('basket', {})
+    basket_items = session.get('basket', {})
 
-        # Дорабатываем содержимое basket: дополняем адреса картинок и кол-во в корзине.
-        for item in items:
-            if item['prod_img']:
-                item['prod_img'] = url_for('static', filename=item['prod_img'])
-            if str(item["prod_id"]) in basket_items:
-                item["amount"] = basket_items[str(item["prod_id"])]["amount"]
+    # Дорабатываем содержимое basket: дополняем адреса картинок и кол-во в корзине.
+    for item in items:
+        if item['prod_img']:
+            item['prod_img'] = url_for('static', filename=item['prod_img'])
+        if str(item["prod_id"]) in basket_items:
+            item["amount"] = basket_items[str(item["prod_id"])]["amount"]
 
-        # print("new items = ", items)
+    print("basket = ", basket_items)
+    amount_in_basket = 0
+    print("amount_in_basket", amount_in_basket)
+    for item in basket_items:
+        print("item = ", item)
+        amount_in_basket += basket_items[str(item)]["amount"]
 
-        return render_template('catalog.html', items=items, query=input_product)
+    return render_template('catalog.html', items=items, query=input_product, amount_in_basket=amount_in_basket)
 
