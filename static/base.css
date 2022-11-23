@@ -11,6 +11,13 @@ html, body {
     /*background-image: url('pivo.jpg');*/
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+     display: none;
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
 a {
     text-decoration: none;
 }

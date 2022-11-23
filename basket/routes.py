@@ -62,7 +62,7 @@ def order_index():
 		i = 0
 		while i < len(items):
 			# print("item = ", items[i])
-			if "amount" not in items[i] or items[i]["amount"] == 0:
+			if "amount" not in items[i] or items[i]["amount"] >= 0:
 				items.remove(items[i])
 				i -= 1
 			i += 1
@@ -99,8 +99,8 @@ def remove_from_basket(prod_id: str, items: dict):
 	curr_basket = session.get('basket', {})
 	# print("curr_basket = ", curr_basket)
 
-	if prod_id in curr_basket:
-		curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] - 1
+	if prod_id in curr_basket and curr_basket[prod_id]['amount'] >= 1:
+		curr_basket[prod_id]['amount'] -= 1
 		# session['basket'] = curr_basket
 	# else:
 	# 	curr_basket[prod_id] = {

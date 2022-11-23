@@ -32,10 +32,14 @@ def catalog():
         sql = provider.get('all_items.sql')
         items = select_dict(db_config, sql)
 
+        basket_items = session.get('basket', {})
+
+        # Дорабатываем содержимое basket: дополняем адреса картинок и кол-во в корзине.
         for item in items:
             if item['prod_img']:
                 item['prod_img'] = url_for('static', filename=item['prod_img'])
-        print(request.method)
+            if str(item["prod_id"]) in basket_items:
+                item["amount"] = basket_items[str(item["prod_id"])]["amount"]
 
         return render_template('catalog.html', items=items)
 
