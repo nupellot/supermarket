@@ -1,3 +1,8 @@
+.content-title {
+    /*outline: 1px solid red;*/
+    font-size: 2rem;
+}
+
 .result-container {
     /*outline: 1px solid red;*/
     width: 100%;

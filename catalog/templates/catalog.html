@@ -7,6 +7,16 @@
 <link href="{{ url_for('bp_catalog.static', filename='catalog.css') }}" rel="stylesheet" type="text/css">
 
 
+
+<span class="content-title-container">
+    <span class="content-title">
+        {{ query if query else "Каталог"}}
+    </span>
+    <span class="content-amount">
+        {{items|length}}
+    </span>
+</span>
+
 {% if items %}
 <div class="result-container">
     {% for item in items %}
@@ -15,7 +25,7 @@
         <img src="{{ item['prod_img'] }}" alt="" class="result-img">
         <div class="info">
             <div class="prod-name">{{ item['prod_name'] }}</div>
-            <div class="prod-description">{{ item['prod_measure'] }}</div>
+            <div class="prod-description">{{ item['prod_measure'] }}{% if item['prod_description'] %}.  {{ item['prod_description'] }}{% endif %}</div>
         </div>
         <div class="price-and-basket">
             <div class="price">
