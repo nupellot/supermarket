@@ -17,7 +17,7 @@ from database.sql_provider import SQLProvider
 # template_folder – подкаталог для шаблонов данного Blueprint (необязательный параметр, при его отсутствии берется подкаталог шаблонов приложения);
 # static_folder – подкаталог для статических файлов (необязательный параметр, при его отсутствии берется подкаталог static приложения).
 # После создания эскиза его нужно зарегистрировать в основном приложении.
-blueprint_auth = Blueprint('blueprint_auth', __name__, template_folder='templates', static_folder='static')
+blueprint_auth = Blueprint('bp_auth', __name__, template_folder='templates', static_folder='static')
 provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 
 

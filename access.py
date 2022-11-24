@@ -9,7 +9,7 @@ def login_required(func):
     def wrapper(*args, **kwargs):
         if 'user_id' in session:
             return func(*args, **kwargs)
-        return redirect(url_for('blueprint_auth.start_auth'))
+        return redirect(url_for('bp_auth.start_auth'))
     return wrapper
 
 

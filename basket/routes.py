@@ -7,12 +7,12 @@ from database.operations import select_dict
 from database.sql_provider import SQLProvider
 
 
-blueprint_order = Blueprint('bp_order', __name__, template_folder='templates', static_folder='static')
+blueprint_basket = Blueprint('bp_basket', __name__, template_folder='templates', static_folder='static')
 
 provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 
 
-@blueprint_order.route('/', methods=['GET', 'POST'])
+@blueprint_basket.route('/', methods=['GET', 'POST'])
 # @external_required
 def order_index():
 	db_config = current_app.config['db_config']
@@ -154,7 +154,7 @@ def set_amount_for_item_in_basket(prod_id, amount, items):
 		return True
 
 
-@blueprint_order.route('/save_order', methods=['GET', 'POST'])
+@blueprint_basket.route('/save_order', methods=['GET', 'POST'])
 # @external_required
 def save_order():
 	user_id = session.get('user_id')
@@ -197,7 +197,7 @@ def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
 				return order_id
 
 
-@blueprint_order.route('/clear-basket')
+@blueprint_basket.route('/clear-basket')
 def clear_basket():
 	if 'basket' in session:
 		session.pop('basket')

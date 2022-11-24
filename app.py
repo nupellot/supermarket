@@ -5,7 +5,7 @@ from auth.routes import blueprint_auth
 from catalog.routes import blueprint_catalog
 from market.routes import blueprint_market
 from report.routes import blueprint_report
-from basket.routes import blueprint_order
+from basket.routes import blueprint_basket
 from access import login_required
 
 
@@ -15,7 +15,7 @@ app.secret_key = 'SuperKey'
 app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_report, url_prefix='/report')
 app.register_blueprint(blueprint_market, url_prefix='/market')
-app.register_blueprint(blueprint_order, url_prefix='/basket')
+app.register_blueprint(blueprint_basket, url_prefix='/basket')
 app.register_blueprint(blueprint_catalog, url_prefix='/catalog')
 
 app.config['db_config'] = json.load(open('configs/db.json'))
