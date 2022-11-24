@@ -39,7 +39,7 @@
 }
 
 .prod-description {
-    color: gray;
+    color: #8c8c8c;
     font-size: 13px;
 }
 
@@ -85,11 +85,16 @@
     /*height: 100%;*/
     border: none;
     text-align: center;
-    font-size: 125%;
+    font-size: 1.25rem;
     /*display: flex;*/
     /*justify-content: center;*/
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
+.pick-container > input[type=submit]:hover {
+    transform: scale(102%);
+    background: #656464;
+}
 
 .pick-container > * {
     width: 30px;
@@ -104,7 +109,7 @@
     margin: auto;
     width: 30px;
     height: 30px;
-    background: rgba(141, 141, 141, 0.32);
+    background: rgba(30, 27, 27, 0.32);
     border-radius: 10px;
     padding: 0;
     font-size: 40px;
