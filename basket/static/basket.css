@@ -19,6 +19,7 @@
 .dashboard-container {
     /*outline: 1px solid red;*/
     display: grid;
+    grid-template-rows: 2rem 200px;
     height: 100%;
     border-radius: inherit;
     /*margin-left: auto;*/
@@ -39,7 +40,7 @@
 }
 
 .make-order-button {
-    align-self: start;
+    /*align-self: start;*/
     /*background: linear-gradient(25deg, rgba(27, 126, 35, 0.8), rgba(0, 70, 5, 0.69));*/
     border: 1px solid rgba(0, 168, 13, 0.75);
     background: #028502;
@@ -68,4 +69,13 @@
 .clear-basket-button:hover {
     background: rgba(255, 0, 0, 0.88);
     transform: scale(102%);
+}
+
+.basket-sum {
+    /*display: flex;*/
+    justify-content: space-between;
+    width: 100%;
+    /*align-self: start;*/
+    font-size: 1.25rem;
+    text-align: start;
 }

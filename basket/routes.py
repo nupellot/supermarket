@@ -62,11 +62,13 @@ def order_index():
 			i -= 1
 		i += 1
 
+	basket_sum = 0
 	amount_in_basket = 0
 	for item in items:
 		amount_in_basket += item["amount"]
+		basket_sum += item["amount"] * item["prod_price"]
 
-	return render_template('basket.html', items=items, amount_in_basket=amount_in_basket)
+	return render_template('basket.html', items=items, amount_in_basket=amount_in_basket, basket_sum=basket_sum)
 
 
 def add_to_basket(prod_id: str, items: dict):
