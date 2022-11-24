@@ -78,19 +78,6 @@
                     </div>
                 </div>
             </div>
-<!--            <div class="modules">-->
-<!--                {% if session.get('user_group', None) == "admin" %}-->
-<!--                <a href="{{ url_for('blueprint_report.start_report') }}" class="module blueprint_report">Отчёты</a>-->
-<!--&lt;!&ndash;                <a href="{{ url_for('blueprint_report.start_report') }}" class="module check-report-module">Просмотр отчетов</a>&ndash;&gt;-->
-<!--                <a href="{{ url_for('blueprint_query.queries') }}" class="module blueprint_query">Запросы</a>-->
-<!--                {% endif %}-->
-<!--&lt;!&ndash;                <a href="{{ url_for('blueprint_auth.start_auth') }}" class="module">Выход из системы</a>&ndash;&gt;-->
-<!--                <style>-->
-<!--                    .{{request.blueprint}} {-->
-<!--                        text-decoration: underline;-->
-<!--                    }-->
-<!--                </style>-->
-<!--            </div>-->
         </header>
         <div class="content">
             {% block product_form %}{% endblock %}

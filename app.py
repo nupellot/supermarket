@@ -2,7 +2,6 @@ import json
 
 from flask import Flask, render_template, session, request, redirect, url_for
 from auth.routes import blueprint_auth
-from blueprint_query.routes import blueprint_query
 from catalog.routes import blueprint_catalog
 from market.routes import blueprint_market
 from report.routes import blueprint_report
@@ -15,7 +14,6 @@ app.secret_key = 'SuperKey'
 
 app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_report, url_prefix='/report')
-app.register_blueprint(blueprint_query, url_prefix='/queries')
 app.register_blueprint(blueprint_market, url_prefix='/market')
 app.register_blueprint(blueprint_order, url_prefix='/basket')
 app.register_blueprint(blueprint_catalog, url_prefix='/catalog')
