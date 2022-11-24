@@ -10,7 +10,7 @@ body {
     /*background: linear-gradient(to right, blue, pink);*/
     /*background: rgb(229, 229, 229);*/
     background: linear-gradient(90deg, rgba(0,0,255,0.75) 0%, rgba(255,192,203,0.75) 100%);
-    background: url("baltika-9.jpg");
+    /*background: url("baltika-9.jpg");*/
 }
 
 input {
@@ -48,7 +48,7 @@ a:visited {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.91);
+    background: rgba(255, 255, 255, 0.95);
     height: 65px;
 }
 
@@ -106,6 +106,14 @@ a:visited {
     height: 100%;
 }
 
+.upper-line > * {
+    transition: 0.2s ease;
+}
+
+.upper-line > *:hover, .search-container:focus {
+    transform: scale(102%);
+}
+
 .search {
     /*outline: 1px solid green;*/
     width: 85%;
@@ -124,11 +132,12 @@ a:visited {
 
 .search > input {
     border: none;
-    outline: none;
+    /*outline: 1px solid red;*/
     width: 100%;
     font-size: 1rem;
     height: 85%;
     margin-right: 15px;
+    transition: 0.2s ease;
 }
 
 .search-submit-button {
@@ -229,18 +238,18 @@ input:focus {
     /*outline: 1px solid red;*/
 }
 
-.module {
-    font-size: 19px;
-    margin-right: 15px;
-    text-decoration: none;
-    color: #676c6f;
-    transition: .2s;
-    transition-timing-function: ease;
-    border-radius: 10px;
-    padding: 5px;
-    box-shadow: 0 1px .625rem 0 hsla(210, 7%, 0%, .26), 0 .125rem .25rem 0 hsla(210, 7%, 22%, .08);
-    background: white;
-}
+/*.module {*/
+/*    font-size: 19px;*/
+/*    margin-right: 15px;*/
+/*    text-decoration: none;*/
+/*    color: #676c6f;*/
+/*    transition: .2s;*/
+/*    transition-timing-function: ease;*/
+/*    border-radius: 10px;*/
+/*    padding: 5px;*/
+/*    box-shadow: 0 1px .625rem 0 hsla(210, 7%, 0%, .26), 0 .125rem .25rem 0 hsla(210, 7%, 22%, .08);*/
+/*    background: white;*/
+/*}*/
 
 .module:visited {
     color: #676c6f;
