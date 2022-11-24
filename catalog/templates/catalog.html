@@ -8,14 +8,14 @@
 
 
 
-<span class="content-title-container">
+<div class="content-title-container">
     <span class="content-title">
         {{ query if query else "Каталог"}}
     </span>
     <span class="content-amount">
         {{items|length}}
     </span>
-</span>
+</div>
 
 {% if items %}
 <div class="result-container">

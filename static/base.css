@@ -10,6 +10,7 @@ body {
     /*background: linear-gradient(to right, blue, pink);*/
     /*background: rgb(229, 229, 229);*/
     background: linear-gradient(90deg, rgba(0,0,255,0.75) 0%, rgba(255,192,203,0.75) 100%);
+    background: url("baltika-9.jpg");
 }
 
 input {
@@ -125,7 +126,7 @@ a:visited {
     border: none;
     outline: none;
     width: 100%;
-    font-size: 20px;
+    font-size: 1rem;
     height: 85%;
     margin-right: 15px;
 }
@@ -252,10 +253,10 @@ input:focus {
 
 .content {
     display: grid;
-    grid-template-rows: 50px;
+    grid-template-rows: 50px 1fr;
+    grid-template-columns: 1fr;
     /*display: none;*/
     max-width: 100%;
-
     /*min-height: 400px;*/
     margin-top: 85px;
     box-shadow: 0 1px .625rem 0 hsla(210, 7%, 0%, .26), 0 .125rem .25rem 0 hsla(210, 7%, 22%, .08);
