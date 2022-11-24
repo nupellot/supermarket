@@ -13,30 +13,30 @@
     /*width: 75%;*/
     /*display: grid;*/
     grid-template-columns: 7fr 2fr;
-    /*grid-template-rows: 50px 1fr;*/
+    grid-template-rows: 50px 1fr;
     grid-column-gap: 20px;
     min-height: 40vh;
     /*width: auto;*/
     /*display: none;*/
 }
 
-/*.content-title {*/
-/*    grid-column-start: 1;*/
-/*    grid-column-end: 3;*/
-/*    grid-row-start: 1;*/
-/*    grid-row-end: 2;*/
-/*}*/
+.content-title {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
 
-/*.result-container {*/
-/*    grid-column-start: 1;*/
-/*    grid-column-end: 3;*/
-/*    grid-row-start: 1;*/
-/*    grid-row-end: 2;*/
-/*}*/
+.result-container {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
 
 .dashboard-container {
     /*outline: 1px solid red;*/
-    grid-row-start: 1;
+    grid-row-start: 2;
     grid-row-end: 3;
     grid-column-start: 2;
     grid-column-end: 3;
