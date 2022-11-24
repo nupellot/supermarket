@@ -18,7 +18,9 @@
             <div class="prod-description">{{ item['prod_measure'] }}</div>
         </div>
         <div class="price-and-basket">
-            <div class="price">{{ item['prod_price'] }}</div>
+            <div class="price">
+                {{ item['prod_price'] }}<span class="ruble-icon">₽</span>
+            </div>
             <form class="pick-container" method="post">
 
                 <input type="submit" value="-" class="minus" name="minus">

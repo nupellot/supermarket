@@ -55,7 +55,7 @@
 }
 
 .price {
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .pick-container {
@@ -85,7 +85,8 @@
     /*height: 100%;*/
     border: none;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    font-family: Montserrat, sans-serif;
     /*display: flex;*/
     /*justify-content: center;*/
     transition: background 0.3s ease, transform 0.2s ease;
@@ -99,6 +100,10 @@
 .pick-container > * {
     width: 30px;
     height: 30px;
+}
+
+.ruble-icon {
+    font-size: 1rem;
 }
 
 .plus, .minus {
