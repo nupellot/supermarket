@@ -17,22 +17,22 @@
     {% if orders %}
         {% for order in orders %}
         <div class="order-container">
-            <div class="order-upperline"></div>
+            <div class="order-upperline">
+                <div class="order-id">ID: {{ order }}</div>
+            </div>
             <div class="order-lowerline">
-                <div class="items-list">
-                    {% for item in orders[order] %}
+                {% for item in orders[order] %}
 
-                        <div class="item-container">
-                            <img class="item-img" src="{{ item["prod_img"] }}" alt="">
-                            <div class="item-description">
-                                <div class="item-price">{{ item["prod_price"] }}</div>
-                                <div class="x"></div>
-                                <div class="item-amount">{{ item["prod_amount"] }}</div>
-                            </div>
+                    <div class="item-container">
+                        <img class="item-img" src="{{ item["prod_img"] }}" alt="">
+                        <div class="item-description">
+                            <div class="item-price">{{ item["prod_price"] }}</div>
+                            <div class="x"></div>
+                            <div class="item-amount">{{ item["prod_amount"] }}</div>
                         </div>
+                    </div>
 
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
         </div>
         {% endfor %}

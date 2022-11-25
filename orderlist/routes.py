@@ -25,7 +25,9 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))  # соз
 
 
 @blueprint_orderlist.route('/', methods=['GET', 'POST'])
-def catalog():
+def orderlist():
+    if request.method == "POST":
+        return redirect(url_for("bp_catalog.catalog"))
     db_config = current_app.config['db_config']
     sql = provider.get('all_orders.sql')
     items = select_dict(db_config, sql)

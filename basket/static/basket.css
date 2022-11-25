@@ -43,12 +43,14 @@
     display: grid;
     grid-template-rows: 2rem 200px;
     height: 100%;
+    margin-right: 20px;
     border-radius: inherit;
     /*margin-left: auto;*/
     /*margin-right: auto;*/
 }
 
-.dashboard-container > button {
+.dashboard-container > a {
+    display: block;
     font-family: Montserrat, sans-serif;
     width: 100%;
     height: 60px;
@@ -58,7 +60,7 @@
     /*letter-spacing: 2px;*/
     /*background: rgba(0, 255, 196, 0.5);*/
     border-radius: inherit;
-    /*border: none;*/
+    /*outline: 2px solid green;*/
 }
 
 .make-order-button {

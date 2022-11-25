@@ -15,8 +15,8 @@
             {{ basket_sum }}<span class="ruble-icon">₽</span>
         </span>
     </div>
-    <button class="make-order-button">Оформить заказ</button>
-    <button class="clear-basket-button">Очистить корзину</button>
+    <a href="{{ url_for("bp_basket.save_order") }}" class="make-order-button">Оформить заказ</a>
+    <a href="{{ url_for("bp_basket.clear_basket") }}" class="clear-basket-button">Очистить корзину</a>
 </div>
 
 

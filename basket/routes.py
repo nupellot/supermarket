@@ -163,8 +163,9 @@ def save_order():
 	# print(current_basket)
 	# print("GOT order_id = ", order_id)
 	if order_id:
-		session.pop('basket')
-		return render_template('order_created.html', order_id=order_id)
+		if "basket" in session:
+			session.pop('basket')
+		return redirect(url_for("bp_basket.order_index"))
 	else:
 		return 'Что-то пошло не так'
 
@@ -201,4 +202,4 @@ def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
 def clear_basket():
 	if 'basket' in session:
 		session.pop('basket')
-	return redirect(url_for('bp_order.order_index'))
+	return redirect(url_for('bp_basket.order_index'))
