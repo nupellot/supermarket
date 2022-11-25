@@ -1,0 +1,22 @@
+.content {
+    grid-template-rows: 50px;
+}
+
+.orders-title {
+    font-size: 1.5rem;
+}
+
+.result-orders-container {
+    outline: 1px solid red;
+    max-width: 100%;
+    padding: 20px;
+}
+
+.item-img {
+    display: none;
+    object-fit: cover;
+    height: 100px;
+    justify-self: center;
+    max-width: 100%;
+    border-radius: inherit;
+}
