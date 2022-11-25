@@ -4,7 +4,7 @@
   ],
   "admin": [
     "blueprint_market",
-    "blueprint_report"
+    "bp_orderlist"
   ],
   "external": [
     "blueprint_market"

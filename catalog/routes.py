@@ -2,6 +2,7 @@ import os  # работа с объектами операционной сис�
 
 from flask import Blueprint, request, render_template, current_app  # глобальная переменная с конфигом app
 
+from access import login_required, group_required
 from basket.routes import increase_amount_for_item_in_basket, decrease_amount_for_item_in_basket, \
     set_amount_for_item_in_basket, add_to_basket, remove_from_basket
 from database.operations import select, select_dict

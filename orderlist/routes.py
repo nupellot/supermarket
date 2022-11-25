@@ -2,6 +2,7 @@ import os  # работа с объектами операционной сис�
 
 from flask import Blueprint, request, render_template, current_app  # глобальная переменная с конфигом app
 
+from access import group_required
 from basket.routes import increase_amount_for_item_in_basket, decrease_amount_for_item_in_basket, \
     set_amount_for_item_in_basket, add_to_basket, remove_from_basket
 from database.operations import select, select_dict
@@ -25,6 +26,7 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))  # соз
 
 
 @blueprint_orderlist.route('/', methods=['GET', 'POST'])
+@group_required
 def orderlist():
     if request.method == "POST":
         return redirect(url_for("bp_catalog.catalog"))
