@@ -37,6 +37,8 @@ a:visited {
     margin-left: auto;
     margin-right: auto;
     /*outline: 1px solid red;*/
+    position: relative;
+    z-index: 3;
 }
 
 .header {
@@ -50,6 +52,7 @@ a:visited {
     align-items: center;
     background: rgba(255, 255, 255, 0.95);
     height: 65px;
+    z-index: 3;
 }
 
 .upper-line {
@@ -274,7 +277,45 @@ input:focus {
     background: rgba(255, 255, 255, 0.91);
     /*overflow: hidden;*/
     /*background: white;*/
+    position: relative;
+    /*z-index: 3;*/
 }
 
 
 
+
+
+
+.shrek {
+    filter: blur(15px);
+    width: 500px;
+    opacity: 0.7;
+    z-index: 1;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: spin;
+    animation-duration: 210s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    cursor: help;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-150%, -50%) rotateZ(0);
+    }
+    25% {
+        transform: translate(-25%, -150%) rotateZ(180deg);
+    }
+    50% {
+        transform: translate(100%, -25%) rotateZ(360deg);
+    }
+    75% {
+        transform: translate(-25%, 150%) rotateZ(540deg);
+    }
+    100% {
+        transform: translate(-150%, -50%) rotateZ(720deg);
+    }
+}
