@@ -26,7 +26,7 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))  # соз
 
 
 @blueprint_orderlist.route('/', methods=['GET', 'POST'])
-@group_required
+# @group_required
 def orderlist():
     if request.method == "POST":
         return redirect(url_for("bp_catalog.catalog"))
