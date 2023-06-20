@@ -79,7 +79,7 @@ def catalog():
     amount_in_basket = 0
     # print("amount_in_basket", amount_in_basket)
     for item in basket_items:
-        print("item = ", item)
+        # print("item = ", item)
         amount_in_basket += basket_items[str(item)]["amount"]
 
     # print("jsonify(items) = ", jsonify(items))
@@ -87,6 +87,6 @@ def catalog():
     if request.method == "GET":
         return render_template('catalog.html', items=items, query=input_product, amount_in_basket=amount_in_basket)
     if request.method == "POST":
-        return render_template('catalog.html', items=items, query=input_product, amount_in_basket=amount_in_basket)
+        return items
 
 
