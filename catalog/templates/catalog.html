@@ -31,18 +31,17 @@
                 {{ item['prod_price'] }}<span class="ruble-icon">₽</span>
             </div>
 
-            <form class="pick-container" method="post" action="google.com">
+            <form class="pick-container" method="post">
 
-{#                <input type="submit" value="-" class="minus" name="minus">#}
                 <button type="button" onclick=changeAmountOfProduct(this) class="minus" name="minus">-</button>
 
-                <input type="number" min="0" max="99" class="amount" name="amount" value="{{ item['amount'] }}">
+                <input type="number" min="0" max="99" class="amount" placeholder="0"  name="amount" value="{{ item['amount'] }}">
                 <input class="prod_identifier" type="hidden" name="prod_id" value="{{ item['prod_id'] }}">
 
                 <input type="hidden" name="product_name" id="product" value="{{ query }}">
 
-{#                <input type="submit" value="+" class="plus" name="plus">#}
                 <button type="button" onclick=changeAmountOfProduct(this) class="plus" name="plus">+</button>
+
             </form>
 
         </div>
