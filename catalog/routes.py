@@ -42,10 +42,20 @@ def change_amount_of_product():
         set_amount_for_item_in_basket(prod_id, int(request.form.get("amount")))
 
     basket_items = session.get('basket', {})
-    print("basket_items: ", basket_items)
+    # print("basket_items: ", basket_items)
+    amount_in_basket = 0
+    # print("amount_in_basket", amount_in_basket)
+    for item in basket_items:
+        # print("item = ", item)
+        amount_in_basket += basket_items[str(item)]["amount"]
+
     for item in basket_items:
         if item == prod_id:
-            return {"prod_id": prod_id, "amount": basket_items[str(item)]["amount"]}
+            return {
+                    "prod_id": prod_id,
+                    "amount": basket_items[str(item)]["amount"],
+                    "amount_in_basket": amount_in_basket
+                    }
 
     return "Error: Товар не найден в корзине"
 

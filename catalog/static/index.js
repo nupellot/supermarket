@@ -91,6 +91,13 @@ function changeAmountOfProduct(endpoint) {
 	}).done(function(response) {
 		console.log(response)
 		endpoint.form.elements.amount.value = response["amount"]
+		let basketAmount = document.querySelector(".basket-amount")
+		basketAmount.textContent = response["amount_in_basket"]
+		basketAmount.classList.add("basket-amount-update")
+
+		setTimeout(function() {
+			basketAmount.classList.remove("basket-amount-update")
+		}, 100);
 	}).fail(function() {
 		alert('fail');
 	});

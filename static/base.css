@@ -176,6 +176,11 @@ input:focus {
     border-radius: 15px;
     padding: 5px 10px 5px 10px;
     margin-left: 10px;
+    transition: 0.2s ease;
+}
+
+.basket-amount-update {
+    transform: scale(125%);
 }
 
 .orders-container {
@@ -286,6 +291,16 @@ input:focus {
 
 
 
+.flowing {
+    transition: 0.2s ease;
+}
+
+.flowing:hover {
+    transform: scale(105%);
+}
+
+
+
 .shrek {
     filter: blur(15px);
     width: 500px;
@@ -319,3 +334,5 @@ input:focus {
         transform: translate(-150%, -50%) rotateZ(720deg);
     }
 }
+
+
