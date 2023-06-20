@@ -87,43 +87,18 @@ function changeAmountOfProduct(endpoint) {
 	$.ajax({
 		type: "POST",
 		url: "http://127.0.0.1:5001/catalog/api/changeAmountOfProduct",
-		data: {"prod_id": id, "action": endpoint.name}
+		data: {"prod_id": id, "action": endpoint.name, "amount": endpoint.value}
 	}).done(function(response) {
 		console.log(response)
 		endpoint.form.elements.amount.value = response["amount"]
 	}).fail(function() {
 		alert('fail');
 	});
+	return false
 }
 
-// $('form.pick-container').submit(function(e) {
-// 	let $form = $(this);
-// 	let form = this
-// 	console.log($form)
-// 	console.log(form)
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "http://127.0.0.1:5001/catalog/+",
-// 		data: $form.serialize()
-// 	}).done(function(response) {
-// 		let amountElement = form.elements.amount
-// 		let idElement = form.elements.prod_id
-// 		console.log($form.serialize())
-// 		console.log(form.serialize())
-// 		response.forEach(function callback(currentProduct) {
-// 			console.log(currentProduct["prod_id"] + " " + idElement.value)
-// 			// console.log(this.elements)
-//
-// 			if (currentProduct["prod_id"] == idElement.value) {
-// 				console.log("im inside!")
-// 				console.log(amountElement.value + " " + currentProduct["amount"])
-// 				amountElement.value = currentProduct["amount"]
-// 				return
-// 			}
-// 		});
-// 	}).fail(function() {
-// 		alert('fail');
-// 	});
-// 	//отмена действия по умолчанию для кнопки submit
-// 	e.preventDefault();
-// });
+
+$('form.pick-container').submit(function(event) {
+	event.preventDefault()
+	changeAmountOfProduct(this.elements.amount)
+});

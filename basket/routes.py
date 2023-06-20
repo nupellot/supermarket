@@ -74,6 +74,7 @@ def order_index():
 def add_to_basket(prod_id: str):
 	sql_for_product = provider.get('select_product_by_id.sql', id=prod_id)
 	product = select_dict(current_app.config["db_config"], sql_for_product)
+	product = product[0]
 
 	current_basket = session.get('basket', {})
 	print("current_basket = ", current_basket)
@@ -95,23 +96,10 @@ def add_to_basket(prod_id: str):
 
 
 def remove_from_basket(prod_id: str):
-
-	# item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
-	# item_description = item_description[0]
 	curr_basket = session.get('basket', {})
-	# print("curr_basket = ", curr_basket)
 
 	if prod_id in curr_basket and curr_basket[prod_id]['amount'] >= 1:
 		curr_basket[prod_id]['amount'] -= 1
-		# session['basket'] = curr_basket
-	# else:
-	# 	curr_basket[prod_id] = {
-	# 			'prod_name': item_description['prod_name'],
-	# 			'prod_price': item_description['prod_price'],
-	# 			'prod_img': item_description['prod_img'],
-	# 			'prod_measure': item_description['prod_measure'],
-	# 			'amount': 1
-	# 		}
 
 	session.permanent = True
 	return True
@@ -129,12 +117,12 @@ def decrease_amount_for_item_in_basket(prod_id):
 		curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] - 1
 
 
-def set_amount_for_item_in_basket(prod_id, amount, items):
-	item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
-	item_description = item_description[0]
-	# print("prod_id, amount ", prod_id, amount)
+def set_amount_for_item_in_basket(prod_id, amount):
+	sql_for_product = provider.get('select_product_by_id.sql', id=prod_id)
+	product = select_dict(current_app.config["db_config"], sql_for_product)
+	product = product[0]
+
 	curr_basket = session.get('basket', {})
-	# curr_basket[prod_id]['amount'] = amount
 	session['basket'] = curr_basket
 
 	if prod_id in curr_basket:
@@ -145,10 +133,10 @@ def set_amount_for_item_in_basket(prod_id, amount, items):
 			return True
 	else:  # Товара вообще не было в корзине.
 		curr_basket[prod_id] = {
-				'prod_name': item_description['prod_name'],
-				'prod_price': item_description['prod_price'],
-				'prod_img': item_description['prod_img'],
-				'prod_measure': item_description['prod_measure'],
+				'prod_name': product['prod_name'],
+				'prod_price': product['prod_price'],
+				'prod_img': product['prod_img'],
+				'prod_measure': product['prod_measure'],
 				'amount': amount
 		}
 		session['basket'] = curr_basket
