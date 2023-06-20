@@ -1,3 +1,8 @@
+button {
+    border: none;
+    background: none;
+}
+
 .content-title {
     /*outline: 1px solid red;*/
     font-size: 2rem;
@@ -124,5 +129,6 @@
     background: rgba(30, 27, 27, 0.32);
     border-radius: 10px;
     padding: 0;
-    font-size: 40px;
+    font-weight: 400;
+    font-size: 1.20rem;
 }

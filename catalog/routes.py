@@ -26,8 +26,33 @@ blueprint_catalog = Blueprint('bp_catalog', __name__, template_folder='templates
 provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))  # создание словаря для текущего blueprint'а
 
 
+@blueprint_catalog.route('/api/changeAmountOfProduct', methods=['GET', 'POST'])
+def change_amount_of_product():
+    print("im in change_amount_of_product")
+    db_config = current_app.config['db_config']
+
+    print("request.form = ", request.form)
+
+    prod_id = request.form["prod_id"]
+    if request.form.get("action") == "minus":
+        remove_from_basket(prod_id)
+    if request.form.get("action") == "plus":
+        add_to_basket(prod_id)
+    if request.form.get("action") == "amount":
+        set_amount_for_item_in_basket(prod_id, int(request.form.get("amount")))
+
+    basket_items = session.get('basket', {})
+    print("basket_items: ", basket_items)
+    for item in basket_items:
+        if item == prod_id:
+            return {"prod_id": prod_id, "amount": basket_items[str(item)]["amount"]}
+
+    return "Error: Товар не найден в корзине"
+
+
 @blueprint_catalog.route('/', methods=['GET', 'POST'])
 def catalog():
+    print("Im in catalog()")
     db_config = current_app.config['db_config']
 
     if request.method == "GET":
@@ -50,7 +75,7 @@ def catalog():
         print("request.form = ", request.form)
 
         input_product = request.form.get("product_name")
-        sql = provider.get('product.sql', input_product=input_product)
+        sql = provider.get('product.sql', query=input_product)
         items = select_dict(db_config, sql)
 
         is_amount_changed = False

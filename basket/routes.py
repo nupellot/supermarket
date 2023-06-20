@@ -71,29 +71,30 @@ def order_index():
 	return render_template('basket.html', items=items, amount_in_basket=amount_in_basket, basket_sum=basket_sum)
 
 
-def add_to_basket(prod_id: str, items: dict):
+def add_to_basket(prod_id: str):
+	sql_for_product = provider.get('select_product_by_id.sql', id=prod_id)
+	product = select_dict(current_app.config["db_config"], sql_for_product)
 
-	item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
-	item_description = item_description[0]
-	curr_basket = session.get('basket', {})
-	# print("curr_basket = ", curr_basket)
+	current_basket = session.get('basket', {})
+	print("current_basket = ", current_basket)
+	print("product: ", product)
 
-	if prod_id in curr_basket:
+	if prod_id in current_basket:
 		increase_amount_for_item_in_basket(prod_id)
 	else:
-		curr_basket[prod_id] = {
-				'prod_name': item_description['prod_name'],
-				'prod_price': item_description['prod_price'],
-				'prod_img': item_description['prod_img'],
-				'prod_measure': item_description['prod_measure'],
+		current_basket[prod_id] = {
+				'prod_name': product['prod_name'],
+				'prod_price': product['prod_price'],
+				'prod_img': product['prod_img'],
+				'prod_measure': product['prod_measure'],
 				'amount': 1
 			}
-		session['basket'] = curr_basket
+		session['basket'] = current_basket
 		session.permanent = True
 	return True
 
 
-def remove_from_basket(prod_id: str, items: dict):
+def remove_from_basket(prod_id: str):
 
 	# item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
 	# item_description = item_description[0]
@@ -124,7 +125,8 @@ def increase_amount_for_item_in_basket(prod_id):
 
 def decrease_amount_for_item_in_basket(prod_id):
 	curr_basket = session.get('basket', {})
-	curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] - 1
+	if curr_basket[prod_id]["amount"] - 1 >= 0:
+		curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] - 1
 
 
 def set_amount_for_item_in_basket(prod_id, amount, items):
@@ -136,12 +138,12 @@ def set_amount_for_item_in_basket(prod_id, amount, items):
 	session['basket'] = curr_basket
 
 	if prod_id in curr_basket:
-		if curr_basket[prod_id]['amount'] == amount:
+		if curr_basket[prod_id]['amount'] == amount:  # amount в форме заполнено, но не отличается от прошлого.
 			return False
-		else:
+		else:  # amount в форме отличается от прошлого.
 			curr_basket[prod_id]['amount'] = amount
 			return True
-	else:
+	else:  # Товара вообще не было в корзине.
 		curr_basket[prod_id] = {
 				'prod_name': item_description['prod_name'],
 				'prod_price': item_description['prod_price'],
