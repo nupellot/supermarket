@@ -1,11 +1,12 @@
 import os  # работа с объектами операционной системы
 
-from flask import Blueprint, request, render_template, current_app  # глобальная переменная с конфигом app
+from flask import Blueprint, request, render_template, current_app, jsonify  # глобальная переменная с конфигом app
 
 from access import login_required, group_required
 from basket.routes import increase_amount_for_item_in_basket, decrease_amount_for_item_in_basket, \
     set_amount_for_item_in_basket, add_to_basket, remove_from_basket
 from database.operations import select, select_dict
+
 from database.sql_provider import SQLProvider
 
 import os
@@ -74,12 +75,18 @@ def catalog():
         if str(item["prod_id"]) in basket_items:
             item["amount"] = basket_items[str(item["prod_id"])]["amount"]
 
-    print("basket = ", basket_items)
+    # print("basket = ", basket_items)
     amount_in_basket = 0
-    print("amount_in_basket", amount_in_basket)
+    # print("amount_in_basket", amount_in_basket)
     for item in basket_items:
         print("item = ", item)
         amount_in_basket += basket_items[str(item)]["amount"]
 
-    return render_template('catalog.html', items=items, query=input_product, amount_in_basket=amount_in_basket)
+    # print("jsonify(items) = ", jsonify(items))
+
+    if request.method == "GET":
+        return render_template('catalog.html', items=items, query=input_product, amount_in_basket=amount_in_basket)
+    if request.method == "POST":
+        return render_template('catalog.html', items=items, query=input_product, amount_in_basket=amount_in_basket)
+
 

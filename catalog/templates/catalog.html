@@ -30,6 +30,7 @@
             <div class="price">
                 {{ item['prod_price'] }}<span class="ruble-icon">₽</span>
             </div>
+
             <form class="pick-container" method="post">
 
                 <input type="submit" value="-" class="minus" name="minus">
@@ -42,6 +43,7 @@
                 <input type="submit" value="+" class="plus" name="plus">
 
             </form>
+
         </div>
     </div>
     {% endfor %}
@@ -50,6 +52,8 @@
 
 {% block basket %}{% endblock %}
 
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src={{ url_for("bp_catalog.static", filename="index.js") }}></script>
 {% endblock %}
 
 
